@@ -1,0 +1,15 @@
+<div
+  style="
+    height: 100vh;
+    width: 10vw;
+    background: white;
+    border-left: 2px solid black;
+    position: fixed;
+    right: 0;
+    top:0;
+    transition: 0.2s;
+  "
+  [style.width.vw]="state == 0 ? 5 : 50"
+  (click)="onClick()">
+  <ng-content></ng-content>
+</div>
