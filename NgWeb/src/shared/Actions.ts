@@ -1,6 +1,6 @@
 import { IAction } from "./IAction";
 
-export const Actions: IAction[] = [
+export const actions: IAction[] = [
     {
         id: 1,
         name: 'Вальцевать'
