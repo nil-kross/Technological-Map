@@ -4,7 +4,7 @@ import { instruments } from "../shared/Instruments";
 import { controls } from "../shared/Controls";
 import { equipements } from "../shared/Equipment";
 import { ITransition } from "../shared/ITransition";
-import { Actions } from "../shared/Actions";
+import { actions as actions } from "../shared/Actions";
 import { objects } from "../shared/Objects";
 
 export class OperationService {
@@ -16,7 +16,7 @@ export class OperationService {
 
     constructor() {
         const transition: ITransition = {
-            action: Actions.find(x => x.id === 1),
+            action: actions.find(x => x.id === 1),
             object: objects.find(x => x.id === 1),
             measures: []
         };

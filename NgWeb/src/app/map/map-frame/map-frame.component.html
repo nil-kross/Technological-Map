@@ -1,0 +1,12 @@
+<ng-container *ngFor="let operation of operations">
+  <div>{{ operation.group.name }}</div>
+  <div *ngFor="let transition of operation.transitions">
+    <span>*</span>
+    <span>{{ transition.action.name }}</span>
+    <span>{{ transition.object.fullname }}</span>
+    <span *ngIf="transition.measures.length > 0">, выдерживая размеры</span>
+    <ng-container *ngFor="let measure of transition.measures">
+      <span>{{ measure.name }}: {{ measure.value }} мм</span>
+    </ng-container>
+  </div>
+</ng-container>

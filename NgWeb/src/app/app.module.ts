@@ -4,18 +4,19 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { FlyoutComponent } from './flyout/flyout.component';
+import { MapFrameComponent } from './map/map-frame/map-frame.component';
 import { OperationService } from './operation.service';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    FlyoutComponent
+    FlyoutComponent,
+    MapFrameComponent
   ],
   imports: [
     BrowserModule
   ],
-  providers: [],
   providers: [
     OperationService
   ],
