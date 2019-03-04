@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { FlyoutComponent } from './flyout/flyout.component';
+import { OperationService } from './operation.service';
 
 
 @NgModule({
@@ -15,6 +16,9 @@ import { FlyoutComponent } from './flyout/flyout.component';
     BrowserModule
   ],
   providers: [],
+  providers: [
+    OperationService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
