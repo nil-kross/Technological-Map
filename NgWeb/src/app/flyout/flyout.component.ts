@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 
 enum FlyoutState {
   Collapsed = 0,
-  Expanded
+  Expanded = 1
 }
 
 @Component({
   selector: 'app-flyout',
   templateUrl: './flyout.component.html',
-  styleUrls: ['./flyout.component.css']
+  styleUrls: ['./flyout.component.less']
 })
 export class FlyoutComponent implements OnInit {
   state: FlyoutState = FlyoutState.Collapsed;
@@ -16,7 +16,7 @@ export class FlyoutComponent implements OnInit {
   constructor() { }
 
   onClick() {
-    this.state = this.state == FlyoutState.Collapsed ? FlyoutState.Expanded : FlyoutState.Collapsed;
+    this.state = this.state === FlyoutState.Collapsed ? FlyoutState.Expanded : FlyoutState.Collapsed;
   }
 
   ngOnInit() {

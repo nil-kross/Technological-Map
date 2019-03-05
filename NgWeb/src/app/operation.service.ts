@@ -18,7 +18,12 @@ export class OperationService {
         const transition: ITransition = {
             action: actions.find(x => x.id === 1),
             object: objects.find(x => x.id === 1),
-            measures: []
+            measures: [{
+              id: 0,
+              name: 'D',
+              value: 25
+            }],
+            id: 1
         };
         const kek: IOperation = {
             group: operationGroups.find(x => x.id === 1),
