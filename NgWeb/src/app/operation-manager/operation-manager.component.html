@@ -1,4 +1,68 @@
-<input
-  style="margin: "
-  type="button"
-  (click)="onSaveClick($event)"/>
+<div
+  class="text mod-margin">
+  Операция
+</div>
+<select class="mod-margin">
+  <ng-container *ngFor="let option of operationGroupOptions">
+    <option [value]="option.id">{{ option.name }}</option>
+  </ng-container>
+</select>
+<div>
+  <input
+    class="text mod-margin"
+    type="button"
+    value="Принять"
+    (click)="onSaveClick($event)"/>
+  <input
+    class="text mod-margin"
+    type="button"
+    value="Удалить"
+    (click)="onSaveClick($event)"/>
+</div>
+<div>
+  <input
+    class="text mod-margin"
+    type="button"
+    value="Вверх"
+    (click)="onMoveUpClick($event)"/>
+  <input
+    class="text mod-margin"
+    type="button"
+    value="Вниз"
+    (click)="onMoveDownClick($event)"/>
+</div>
+<div>
+  <span
+    class="text label">
+    Средства технологического оснащения
+  </span>
+</div>
+<div>
+  <span
+    class="text label">
+    Инструмент
+  </span>
+  <select class="mod-margin">
+    <ng-container *ngFor="let option of instrumentOptions">
+      <option [value]="option.id">{{ option.name }}</option>
+    </ng-container>
+  </select>
+  <span
+    class="text label">
+    Оснастка
+  </span>
+  <select class="mod-margin">
+    <ng-container *ngFor="let option of equipmentOptions">
+      <option [value]="option.id">{{ option.name }}</option>
+    </ng-container>
+  </select>
+  <span
+    class="text label">
+    Средства контроля
+  </span>
+  <select class="mod-margin">
+    <ng-container *ngFor="let option of controlOptions">
+      <option [value]="option.id">{{ option.name }}</option>
+    </ng-container>
+  </select>
+</div>
