@@ -1,14 +1,14 @@
 <div
   *ngIf="!isOpened"
   class="flyout flyout-collapsed"
-  [style.width.vw]="5"
+  [style.height.vh]="5"
   (click)="onClick(true)">
 </div>
 
 <div
   *ngIf="isOpened"
   class="flyout flyout-expanded"
-  [style.width.vw]="50">
+  [style.height.vh]="50">
   <input
     class="mod-margin"
     type="button"
