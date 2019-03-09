@@ -1,6 +1,18 @@
 <div
-  class="flyout"
-  [style.width.vw]="state == 0 ? 5 : 50"
-  (click)="onClick()">
+  *ngIf="!isOpened"
+  class="flyout flyout-collapsed"
+  [style.width.vw]="5"
+  (click)="onClick(true)">
+</div>
+
+<div
+  *ngIf="isOpened"
+  class="flyout flyout-expanded"
+  [style.width.vw]="50">
+  <input
+    class="mod-margin"
+    type="button"
+    value="Закрыть"
+    (click)="onClick(false)"/>
   <ng-content></ng-content>
 </div>
