@@ -4,27 +4,38 @@ html, body {
     margin: none;
 }
 
+@import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+
 @font-face {
-    font-family: "GostARegular";
-    src: url("../fonts/GostARegular/GostARegular.eot");
-    src: url("../fonts/GostARegular/GostARegular.eot?#iefix")format("embedded-opentype"),
-    url("../fonts/GostARegular/GostARegular.woff") format("woff"),
-    url("../fonts/GostARegular/GostARegular.ttf") format("truetype");
-    font-style: normal;
-    font-weight: normal;
+  font-family: "GostARegular";
+  src: url("../fonts/GostARegular/GostARegular.eot");
+  src: url("../fonts/GostARegular/GostARegular.eot?#iefix")format("embedded-opentype"),
+  url("../fonts/GostARegular/GostARegular.woff") format("woff"),
+  url("../fonts/GostARegular/GostARegular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
 }
 
 .mod {
-    &-margin {
-        margin: 10px;
-    }
-}
-
-*, .text {
-    font-family: "GostARegular";
-    font-size: 32px;
-}
-
-.label {
+  &-margin {
     margin: 10px;
+  }
+
+  &-block {
+    display: block;
+  }
+
+  &-frame {
+    padding: 10px;
+    border: 1px solid #eee;
+  }
+
+  &-text, * {
+    font-family: "GostARegular";
+    font-size: 26px;
+  }
+
+  &-label {
+    margin: 10px;
+  }
 }

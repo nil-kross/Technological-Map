@@ -7,6 +7,7 @@ import { FlyoutComponent } from './flyout/flyout.component';
 import { MapFrameComponent } from './map/map-frame/map-frame.component';
 import { OperationService } from './operation.service';
 import { OperationManagerComponent } from './operation-manager/operation-manager.component';
+import { TransitionManagerComponent } from './transition-manager/transition-manager.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { OperationManagerComponent } from './operation-manager/operation-manager
     AppComponent,
     FlyoutComponent,
     MapFrameComponent,
-    OperationManagerComponent
+    OperationManagerComponent,
+    TransitionManagerComponent
   ],
   imports: [
     BrowserModule

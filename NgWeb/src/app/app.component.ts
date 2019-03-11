@@ -1,10 +1,16 @@
-import { Component } from '@angular/core';
+import { FlyoutComponent } from './flyout/flyout.component';
+import { Component, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  templateUrl: './app.component.html'
 })
 export class AppComponent {
+  @ViewChild('flyout') flyout: FlyoutComponent;
+
   title = 'app';
+
+  closeFlyout() {
+    this.flyout.close();
+  }
 }

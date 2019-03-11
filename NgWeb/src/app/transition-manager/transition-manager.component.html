@@ -1,0 +1,57 @@
+<div class="container-fluid">
+  <div class="row">
+    <span class="col-3">
+      <div class="container-fluid">
+        <div class="row">
+          <span>Действие</span>
+        </div>
+        <div class="row">
+          <select>
+            <ng-container *ngFor="let option of actionOptions">
+              <option [value]="option.id">{{ option.name }}</option>
+            </ng-container>
+          </select>
+        </div>
+      </div>
+    </span>
+    <span class="col-3">
+      <div class="container-fluid">
+        <div class="row">
+          <span>Объект</span>
+        </div>
+        <div class="row">
+          <select></select>
+        </div>
+      </div>
+    </span>
+    <span class="col-1">
+      <div class="container-fluid">
+        <div class="row">
+          <span>Идент.</span>
+        </div>
+        <div class="row">
+          <input
+            type="number"
+            value="1" />
+        </div>
+      </div>
+    </span>
+    <span class="col-2">
+      <div class="container-fluid">
+        <div class="row">
+          <span>Размер 1</span>
+        </div>
+        <div class="row">
+          <input
+            class="col"
+            type="text"
+            value="D1" />
+          <input
+            class="col"
+            type="number"
+            value="0"/>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>

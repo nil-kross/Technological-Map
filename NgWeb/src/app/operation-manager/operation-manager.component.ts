@@ -10,8 +10,7 @@ import { IControl } from '../../shared/IControl';
 
 @Component({
   selector: 'operation-manager',
-  templateUrl: './operation-manager.component.html',
-  styleUrls: ['./operation-manager.component.css']
+  templateUrl: './operation-manager.component.html'
 })
 export class OperationManagerComponent implements OnInit {
 

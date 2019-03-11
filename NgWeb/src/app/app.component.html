@@ -12,10 +12,28 @@
     border: 0.75px;
     background: transparent;
   ">
-    <map-frame></map-frame>
+    <map-frame class="mod-block"></map-frame>
   </div>
 </div>
-<app-flyout>
-  <operation-manager></operation-manager>
+<app-flyout #flyout>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-2">
+        <input
+          class="mod-margin"
+          type="button"
+          value="Закрыть"
+          (click)="closeFlyout()"/>
+      </div>
+      <div class="col-10 mod-frame">
+        <operation-manager class="mod-block"></operation-manager>
+      </div>
+    </div>
+    <div class="row">
+      <span class="col mod-frame">
+        <transition-manager class="mod-block"></transition-manager>
+      </span>
+    </div>
+  </div>
 </app-flyout>
 
