@@ -9,10 +9,5 @@
   *ngIf="isOpened"
   class="flyout flyout-expanded"
   [style.height.vh]="50">
-  <input
-    class="mod-margin"
-    type="button"
-    value="Закрыть"
-    (click)="onClick(false)"/>
   <ng-content></ng-content>
 </div>

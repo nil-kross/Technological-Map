@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 
 enum FlyoutState {
   Collapsed = 0,
@@ -19,9 +19,12 @@ export class FlyoutComponent implements OnInit {
 
   constructor() { }
 
+  close() {
+    this.setFlyoutState(false);
+  }
+
   onClick(isOpened: boolean) {
     this.setFlyoutState(isOpened);
-    console.log(this.state);
   }
 
   ngOnInit() {
