@@ -1,11 +1,11 @@
-import { IOperation } from "../shared/IOperation";
-import { operationGroups } from "../shared/OperationGroups";
-import { instruments } from "../shared/Instruments";
-import { controls } from "../shared/Controls";
-import { equipements } from "../shared/Equipment";
-import { ITransition } from "../shared/ITransition";
-import { actions as actions } from "../shared/Actions";
-import { objects } from "../shared/Objects";
+import { IOperation } from '../shared/IOperation';
+import { operationGroups } from '../shared/OperationGroups';
+import { instruments } from '../shared/Instruments';
+import { controls } from '../shared/Controls';
+import { equipements } from '../shared/Equipment';
+import { ITransition } from '../shared/ITransition';
+import { actions as actions } from '../shared/Actions';
+import { objects } from '../shared/Objects';
 
 export class OperationService {
     private _operations: IOperation[] = [];
