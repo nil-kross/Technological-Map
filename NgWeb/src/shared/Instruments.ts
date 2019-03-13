@@ -1,8 +1,12 @@
-import { IInstrument } from "./IInstrument";
+import { IInstrument } from './IInstrument';
 
 export const instruments: IInstrument[] = [
-    {
-        id: 1,
-        name: 'Резец'
-    }
+  {
+    id: 0,
+    name: ''
+  },
+  {
+      id: 1,
+      name: 'Резец'
+  }
 ];
