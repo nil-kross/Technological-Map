@@ -15,25 +15,25 @@ export class OperationService {
     }
 
     constructor() {
-        const transition: ITransition = {
-            action: actions.find(x => x.id === 1),
-            object: objects.find(x => x.id === 1),
-            measures: [{
-              id: 0,
-              name: 'D',
-              value: 25
-            }],
-            id: 1
-        };
-        const kek: IOperation = {
-            group: operationGroups.find(x => x.id === 1),
-            instrument: instruments.find(x => x.id === 1),
-            control: controls.find(x => x.id === 1),
-            equipment: equipements.find(x => x.id === 1),
-            transitions: [transition]
-        };
+        // const transition: ITransition = {
+        //     action: actions.find(x => x.id === 1),
+        //     object: objects.find(x => x.id === 1),
+        //     measures: [{
+        //       id: 0,
+        //       name: 'D',
+        //       value: 25
+        //     }],
+        //     id: 1
+        // };
+        // const kek: IOperation = {
+        //     group: operationGroups.find(x => x.id === 1),
+        //     instrument: instruments.find(x => x.id === 1),
+        //     control: controls.find(x => x.id === 1),
+        //     equipment: equipements.find(x => x.id === 1),
+        //     transitions: [transition]
+        // };
 
-        this._operations.push(kek);
+        // this._operations.push(kek);
     }
 
     add(operation: IOperation) {

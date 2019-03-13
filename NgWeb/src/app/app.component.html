@@ -34,27 +34,32 @@
         </div>
       </div>
     </ng-container>
+    <input
+       class="mod-padding mod-frame mod-text"
+       type="button"value="+ Добавить операцию"
+       (click)="selectOperation(0)" />
   </div>
 </div>
 <app-flyout #flyout>
-  <div class="container-fluid">
+  <div class="container-fluid mod-padding">
     <div class="row">
-      <div class="col-2">
+      <div>
         <input
           class="mod-control mod-margin"
           type="button"
           value="Закрыть"
           (click)="closeFlyout()"/>
       </div>
-      <div class="col-10 mod-frame">
+      <div class="col">
         <operation-manager
-          class="mod-block"
+          class="mod-block mod-frame"
           (addOperation)="onAddOperation($event)"></operation-manager>
       </div>
     </div>
     <div class="row">
-      <span class="col mod-frame">
-        <transition-manager class="mod-block"></transition-manager>
+      <span class="col mod-padding">
+        <transition-manager
+          class="mod-block mod-frame"></transition-manager>
       </span>
     </div>
   </div>
