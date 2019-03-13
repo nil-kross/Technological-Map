@@ -2,11 +2,11 @@
   <div class="row">
     <span class="col-3">
       <div class="container-fluid">
-        <div class="row">
+        <div class="row mod-text">
           <span>Действие</span>
         </div>
         <div class="row">
-          <select>
+          <select class="mod-control col">
             <ng-container *ngFor="let option of actionOptions">
               <option [value]="option.id">{{ option.name }}</option>
             </ng-container>
@@ -16,21 +16,26 @@
     </span>
     <span class="col-3">
       <div class="container-fluid">
-        <div class="row">
+        <div class="row mod-text">
           <span>Объект</span>
         </div>
         <div class="row">
-          <select></select>
+          <select class="mod-control col">
+            <ng-container *ngFor="let option of objectOptions">
+              <option [value]="option.id">{{ option.fullname }}</option>
+            </ng-container>
+          </select>
         </div>
       </div>
     </span>
     <span class="col-1">
       <div class="container-fluid">
-        <div class="row">
+        <div class="row mod-text">
           <span>Идент.</span>
         </div>
         <div class="row">
           <input
+            class="mod-control"
             type="number"
             value="1" />
         </div>
@@ -38,16 +43,16 @@
     </span>
     <span class="col-2">
       <div class="container-fluid">
-        <div class="row">
+        <div class="row mod-text">
           <span>Размер 1</span>
         </div>
         <div class="row">
           <input
-            class="col"
+            class="mod-control col"
             type="text"
             value="D1" />
           <input
-            class="col"
+            class="mod-control col"
             type="number"
             value="0"/>
         </div>
