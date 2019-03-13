@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
 import { IControl } from '../../shared/IControl';
 import { IInstrument } from '../../shared/IInstrument';
 import { IOperation } from '../../shared/IOperation';
@@ -15,10 +15,11 @@ import { operationGroups } from './../../shared/OperationGroups';
   templateUrl: './operation-manager.component.html'
 })
 export class OperationManagerComponent implements OnInit {
-  @ViewChild('operationGroupSelect') operationGroupSelect: HTMLSelectElement;
-  @ViewChild('instrumentSelect') instrumentSelect: HTMLSelectElement;
-  @ViewChild('equipmentSelect') equipmentSelect: HTMLSelectElement;
-  @ViewChild('controlSelect') controlSelect: HTMLSelectElement;
+  @ViewChild('operationGroupSelect') operationGroupSelect: ElementRef<HTMLSelectElement>;
+  @ViewChild('instrumentSelect') instrumentSelect: ElementRef<HTMLSelectElement>;
+  @ViewChild('equipmentSelect') equipmentSelect: ElementRef<HTMLSelectElement>;
+  @ViewChild('controlSelect') controlSelect: ElementRef<HTMLSelectElement>;
+  @Output() addOperation = new EventEmitter<IOperation>();
 
   get operationGroupOptions(): IOperationGroup[] {
     return operationGroups;
@@ -63,7 +64,12 @@ export class OperationManagerComponent implements OnInit {
       };
 
       this.operationService.add(operation);
-      console.log(operation); // DEBUG
+      this.addOperation.emit(operation);
+
+      this.operationGroupSelect.nativeElement.value = (-1).toString();
+      this.instrumentSelect.nativeElement.value = (-1).toString();
+      this.equipmentSelect.nativeElement.value = (-1).toString();
+      this.controlSelect.nativeElement.value = (-1).toString();
     }
   }
 

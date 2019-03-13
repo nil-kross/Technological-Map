@@ -23,6 +23,14 @@ export class FlyoutComponent implements OnInit {
     this.setFlyoutState(false);
   }
 
+  open() {
+    this.setFlyoutState(true);
+  }
+
+  setState(isOpened: boolean) {
+    this.setFlyoutState(isOpened);
+  }
+
   onClick(isOpened: boolean) {
     this.setFlyoutState(isOpened);
   }
