@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Output, EventEmitter, Input } from '@angular/core';
 import { IControl } from '../../shared/IControl';
 import { IInstrument } from '../../shared/IInstrument';
 import { IOperation } from '../../shared/IOperation';
@@ -15,6 +15,7 @@ import { operationGroups } from './../../shared/OperationGroups';
   templateUrl: './operation-manager.component.html'
 })
 export class OperationManagerComponent implements OnInit {
+  @Input() operationId: number;
   @ViewChild('operationGroupSelect') operationGroupSelect: ElementRef<HTMLSelectElement>;
   @ViewChild('instrumentSelect') instrumentSelect: ElementRef<HTMLSelectElement>;
   @ViewChild('equipmentSelect') equipmentSelect: ElementRef<HTMLSelectElement>;
@@ -83,6 +84,10 @@ export class OperationManagerComponent implements OnInit {
 
   onMoveDownClick() {
     // TODO
+  }
+
+  private patchUi() {
+    this.operationGroupSelect.nativeElement.value = this.operationId.toString();
   }
 
 }
