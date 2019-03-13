@@ -5,7 +5,9 @@
         class="mod-text mod-margin">
         Операция
       </span>
-      <select class="mod-margin">
+      <select
+        #operationGroupSelect
+        class="mod-control mod-margin">
         <ng-container *ngFor="let option of operationGroupOptions">
           <option [value]="option.id">{{ option.name }}</option>
         </ng-container>
@@ -20,7 +22,7 @@
           class="mod-control mod-margin"
           type="button"
           value="Удалить"
-          (click)="onSaveClick($event)"/>
+          (click)="onDeleteClick($event)"/>
       </span>
       <span>
         <input

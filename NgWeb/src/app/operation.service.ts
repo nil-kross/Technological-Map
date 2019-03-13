@@ -35,4 +35,8 @@ export class OperationService {
 
         this._operations.push(kek);
     }
+
+    add(operation: IOperation) {
+      this._operations.push(operation);
+    }
 }
