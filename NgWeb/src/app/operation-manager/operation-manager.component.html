@@ -5,7 +5,9 @@
         class="mod-text mod-margin">
         Операция
       </span>
-      <select class="mod-margin">
+      <select
+        #operationGroupSelect
+        class="mod-margin">
         <ng-container *ngFor="let option of operationGroupOptions">
           <option [value]="option.id">{{ option.name }}</option>
         </ng-container>
@@ -20,7 +22,7 @@
           class="mod-text mod-margin"
           type="button"
           value="Удалить"
-          (click)="onSaveClick($event)"/>
+          (click)="onDeleteClick($event)"/>
       </span>
       <span>
         <input
@@ -45,34 +47,37 @@
     </div>
   </div>
   <div class="row">
+    <div class="col mod-text mod-label">
+      Инструмент
+    </div>
     <div class="col">
-      <span
-        class="mod-text mod-label">
-        Инструмент
-      </span>
-      <select class="mod-margin">
+      <select
+        #instrumentSelect
+        class="col mod-margin">
         <ng-container *ngFor="let option of instrumentOptions">
           <option [value]="option.id">{{ option.name }}</option>
         </ng-container>
       </select>
     </div>
+    <div class="col mod-text mod-label">
+      Оснастка
+    </div>
     <div class="col">
-      <span
-        class="mod-text mod-label">
-        Оснастка
-      </span>
-      <select class="mod-margin">
+      <select
+        #equipmentSelect
+        class="mod-margin">
         <ng-container *ngFor="let option of equipmentOptions">
           <option [value]="option.id">{{ option.name }}</option>
         </ng-container>
       </select>
     </div>
+    <div class="col mod-text mod-label">
+      Средства контроля
+    </div>
     <div class="col">
-      <span
-        class="mod-text mod-label">
-        Средства контроля
-      </span>
-      <select class="mod-margin">
+      <select
+        #controlSelect
+        class="mod-margin">
         <ng-container *ngFor="let option of controlOptions">
           <option [value]="option.id">{{ option.name }}</option>
         </ng-container>

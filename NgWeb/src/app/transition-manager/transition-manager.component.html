@@ -6,7 +6,7 @@
           <span>Действие</span>
         </div>
         <div class="row">
-          <select>
+          <select class="col">
             <ng-container *ngFor="let option of actionOptions">
               <option [value]="option.id">{{ option.name }}</option>
             </ng-container>
@@ -20,7 +20,11 @@
           <span>Объект</span>
         </div>
         <div class="row">
-          <select></select>
+          <select class="col">
+            <ng-container *ngFor="let option of objectOptions">
+              <option [value]="option.id">{{ option.name }}</option>
+            </ng-container>
+          </select>
         </div>
       </div>
     </span>

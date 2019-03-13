@@ -1,13 +1,21 @@
-<ng-container *ngFor="let operation of operations; index as i">
-  <div>Операция {{ i + 1 }} - {{ operation.group.name }}</div>
-  <div *ngFor="let transition of operation.transitions">
-    <span>*</span>
-    <span>{{ transition.action.name.toLowerCase() }}</span>
-    <span>{{ transition.object.fullname.toLowerCase() }}</span>
-    <span>{{ transition.id }}</span>
-    <span *ngIf="transition.measures.length > 0">, выдерживая размеры</span>
-    <ng-container *ngFor="let measure of transition.measures">
-      <span>{{ measure.name }}={{ measure.value }} мм</span>
-    </ng-container>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-2"></div>
+    <div class="col-10">
+      <ng-container *ngFor="let operation of operations; index as i">
+        <div class="mod-text">Операция {{ i + 1 }} - {{ operation.group.name }}</div>
+        <div *ngFor="let transition of operation.transitions">
+          <span class="mod-text">*</span>
+          <span class="mod-text">{{ transition.action.name.toLowerCase() }}</span>
+          <span class="mod-text">{{ transition.object.fullname.toLowerCase() }}</span>
+          <span class="mod-text">{{ transition.id }}</span>
+          <span class="mod-text"
+                *ngIf="transition.measures.length > 0">, выдерживая размеры</span>
+          <ng-container *ngFor="let measure of transition.measures">
+            <span class="mod-text">{{ measure.name }}={{ measure.value }} мм</span>
+          </ng-container>
+        </div>
+      </ng-container>
+    </div>
   </div>
-</ng-container>
+</div>
