@@ -7,6 +7,7 @@
       </span>
       <select
         #operationGroupSelect
+        [value]="operationGroupId"
         class="mod-control mod-margin">
         <ng-container *ngFor="let option of operationGroupOptions">
           <option [value]="option.id">{{ option.name }}</option>
@@ -52,6 +53,7 @@
     </div>
     <select
       #instrumentSelect
+      [value]="instrumentId"
       class="mod-control col mod-margin">
       <ng-container *ngFor="let option of instrumentOptions">
         <option [value]="option.id">{{ option.name }}</option>
@@ -62,6 +64,7 @@
     </div>
     <select
       #equipmentSelect
+      [value]="equipementId"
       class="mod-control col mod-margin">
       <ng-container *ngFor="let option of equipmentOptions">
         <option [value]="option.id">{{ option.name }}</option>
@@ -72,6 +75,7 @@
     </div>
     <select
       #controlSelect
+      [value]="controlId"
       class="mod-control col mod-margin">
       <ng-container *ngFor="let option of controlOptions">
         <option [value]="option.id">{{ option.name }}</option>

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Output, EventEmitter, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { IControl } from '../../shared/IControl';
 import { IInstrument } from '../../shared/IInstrument';
 import { IOperation } from '../../shared/IOperation';
@@ -14,13 +14,21 @@ import { operationGroups } from './../../shared/OperationGroups';
   selector: 'operation-manager',
   templateUrl: './operation-manager.component.html'
 })
-export class OperationManagerComponent implements OnInit {
+export class OperationManagerComponent implements OnInit, OnChanges {
   @Input() operationId: number;
   @ViewChild('operationGroupSelect') operationGroupSelect: ElementRef<HTMLSelectElement>;
   @ViewChild('instrumentSelect') instrumentSelect: ElementRef<HTMLSelectElement>;
   @ViewChild('equipmentSelect') equipmentSelect: ElementRef<HTMLSelectElement>;
   @ViewChild('controlSelect') controlSelect: ElementRef<HTMLSelectElement>;
   @Output() addOperation = new EventEmitter<IOperation>();
+
+  operationGroupId = 0;
+  instrumentId = 0;
+  equipementId = 0;
+  controlId = 0;
+
+  private emptyId = 0;
+
 
   get operationGroupOptions(): IOperationGroup[] {
     return operationGroups;
@@ -43,6 +51,14 @@ export class OperationManagerComponent implements OnInit {
   ngOnInit() {
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    for (const propName in changes) {
+      if (propName === 'operationId' && changes[propName].currentValue >= 0) {
+        this.patchUi();
+      }
+    }
+  }
+
   onSaveClick() {
     const operationGroupId = +this.operationGroupSelect.nativeElement.value;
     const instrumentId = +this.instrumentSelect.nativeElement.value;
@@ -57,10 +73,15 @@ export class OperationManagerComponent implements OnInit {
       const equipment = equipements.find(x => x.id === equipmentId);
       const control = controls.find(x => x.id === controlId);
       const operation: IOperation = {
+        id: this.operationService.operations.length + 1,
         group: operationGroup,
+        groupId: operationGroupId,
         instrument: instrument,
+        instrumentId,
         equipment: equipment,
+        equipmentId: equipmentId,
         control: control,
+        controlId: controlId,
         transitions: []
       };
 
@@ -87,7 +108,29 @@ export class OperationManagerComponent implements OnInit {
   }
 
   private patchUi() {
-    this.operationGroupSelect.nativeElement.value = this.operationId.toString();
+    let operationGroupId = 0;
+    let instrumentId = 0;
+    let equipementId = 0;
+    let controlId = 0;
+
+    if (this.operationService.operations.length > 0) {
+      const operation = this.operationService.operations.find((x, ind) => ind === this.operationId);
+
+      // this.operationGroupSelect.nativeElement.selectedIndex = this.operationId;
+      // this.instrumentSelect.nativeElement.selectedIndex = operation.instrumentId;
+      // this.equipmentSelect.nativeElement.selectedIndex = operation.equipmentId;
+      // this.controlSelect.nativeElement.selectedIndex = operation.controlId;
+
+      operationGroupId = operation.groupId;
+      instrumentId = operation.instrumentId;
+      equipementId = operation.equipmentId;
+      controlId = operation.controlId;
+    }
+
+    this.operationGroupId = operationGroupId;
+    this.instrumentId = instrumentId;
+    this.equipementId = equipementId;
+    this.controlId = controlId;
   }
 
 }

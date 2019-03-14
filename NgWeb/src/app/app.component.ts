@@ -42,8 +42,8 @@ export class AppComponent {
   }
 
   onAddOperation(operation: IOperation) {
-    this.selectedOperationId = -1;
-    this.selectedTransitionId = -1;
-    this.flyout.close();
+    this.selectedOperationId = 0;
+    this.selectedTransitionId = 0;
+    //this.flyout.close();
   }
 }
