@@ -16,6 +16,15 @@ html, body {
   font-weight: normal;
 }
 
+.gost-font {
+  font-family: "GostARegular";
+}
+
+.light-border {
+  background: white;
+  border: 1px solid #444;
+}
+
 .mod {
   &-margin {
     margin: 10px;
@@ -42,7 +51,7 @@ html, body {
   }
 
   &-text, * {
-    font-family: "GostARegular";
+    .gost-font;
     font-size: 26px;
   }
 
@@ -51,7 +60,26 @@ html, body {
   }
 
   &-control {
-    font-family: "GostARegular";
+    .gost-font;
+    .light-border;
     font-size: 22px;
+  }
+
+  &-button {
+    .gost-font;
+    .light-border;
+    padding: 5px;
+    font-size: 24px;
+    border-radius: 5px;
+    transition: all 0.5s ease-out;
+
+    &--disabled {
+      opacity: 0.75;
+    }
+
+    &:hover {
+      background: #fff;
+      color: gold;
+    }
   }
 }

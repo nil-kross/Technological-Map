@@ -46,4 +46,10 @@ export class AppComponent {
     this.selectedTransitionId = 0;
     //this.flyout.close();
   }
+
+  clearAll() {
+    if (window.confirm('Вы уверены, что ходите удалить все операции и переходы?')) {
+      this.operationService.clearAll();
+    }
+  }
 }

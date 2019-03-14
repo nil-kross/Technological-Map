@@ -15,24 +15,26 @@
       </select>
       <span>
         <input
-          class="mod-control mod-margin"
+          [disabled]="!isControlsValid"
+          [class.mod-button--disabled]="!isControlsValid"
+          class="mod-margin mod-button"
           type="button"
-          value="Принять"
+          value="Добавить"
           (click)="onSaveClick($event)"/>
         <input
-          class="mod-control mod-margin"
+          class="mod-margin mod-button"
           type="button"
           value="Удалить"
           (click)="onDeleteClick($event)"/>
       </span>
       <span>
         <input
-          class="mod-control mod-margin"
+          class="mod-margin mod-button"
           type="button"
           value="Вверх"
           (click)="onMoveUpClick($event)"/>
         <input
-          class="mod-control mod-margin"
+          class="mod-margin mod-button"
           type="button"
           value="Вниз"
           (click)="onMoveDownClick($event)"/>

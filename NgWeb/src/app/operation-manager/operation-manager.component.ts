@@ -29,7 +29,6 @@ export class OperationManagerComponent implements OnInit, OnChanges {
 
   private emptyId = 0;
 
-
   get operationGroupOptions(): IOperationGroup[] {
     return operationGroups;
   }
@@ -44,6 +43,13 @@ export class OperationManagerComponent implements OnInit, OnChanges {
 
   get controlOptions(): IControl[] {
     return controls;
+  }
+
+  get isControlsValid(): boolean {
+    return +this.operationGroupSelect.nativeElement.value > 0 &&
+           +this.instrumentSelect.nativeElement.value > 0 &&
+           +this.equipmentSelect.nativeElement.value > 0 &&
+           +this.controlSelect.nativeElement.value > 0;
   }
 
   constructor(private operationService: OperationService) { }
