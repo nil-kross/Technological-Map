@@ -1,4 +1,4 @@
-import { IControl } from "./IControl";
+import { IControl } from './IControl';
 
 export const controls: IControl[] = [
     {

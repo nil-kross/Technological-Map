@@ -1,5 +1,4 @@
-import { IId } from "./IId";
-import { IName } from "./IName";
+import { IId } from './IId';
+import { IName } from './IName';
 
-export interface IEquipment extends IId, IName {
-}
+export interface IEquipment extends IId, IName { }

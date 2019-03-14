@@ -1,4 +1,4 @@
-import { IId } from "./IId";
+import { IId } from './IId';
 
 export interface IObject extends IId {
     fullname: string;

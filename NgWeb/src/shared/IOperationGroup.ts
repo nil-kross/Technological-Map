@@ -1,4 +1,4 @@
-import { IName } from "./IName";
-import { IId } from "./IId";
+import { IName } from './IName';
+import { IId } from './IId';
 
-export interface IOperationGroup extends IName, IId { };
+export interface IOperationGroup extends IName, IId { }

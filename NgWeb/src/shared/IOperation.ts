@@ -1,8 +1,9 @@
-import { IInstrument } from "./IInstrument";
-import { IOperationGroup } from "./IOperationGroup";
-import { IEquipment } from "./IEquipment";
-import { IControl } from "./IControl";
-import { ITransition } from "./ITransition";
+import { IId } from './IId';
+import { IInstrument } from './IInstrument';
+import { IOperationGroup } from './IOperationGroup';
+import { IEquipment } from './IEquipment';
+import { IControl } from './IControl';
+import { ITransition } from './ITransition';
 
 export interface IOperation {
     group: IOperationGroup;
