@@ -37,6 +37,11 @@ export class AppComponent {
     this.flyout.setState(isNewValue);
   }
 
+  deselectAll() {
+    this.selectOperation(this.emptyId);
+    this.selectTransition(this.emptyId);
+  }
+
   closeFlyout() {
     this.flyout.close();
   }
@@ -50,6 +55,7 @@ export class AppComponent {
   clearAll() {
     if (window.confirm('Вы уверены, что ходите удалить все операции и переходы?')) {
       this.operationService.clearAll();
+      this.deselectAll();
     }
   }
 }

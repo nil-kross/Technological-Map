@@ -45,7 +45,12 @@ export class OperationManagerComponent implements OnInit, OnChanges {
     return controls;
   }
 
+  get isNewOperation(): boolean {
+    return !(this.operationId && this.operationId > 0);;
+  }
+
   get isControlsValid(): boolean {
+    return true; // DEBUG
     return +this.operationGroupSelect.nativeElement.value > 0 &&
            +this.instrumentSelect.nativeElement.value > 0 &&
            +this.equipmentSelect.nativeElement.value > 0 &&

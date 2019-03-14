@@ -46,8 +46,7 @@ html, body {
 
   &-frame {
     padding: 5px;
-    border: 2px solid black;
-    border-radius: 10px;
+    border: 2px solid #444;
   }
 
   &-text, * {
@@ -75,9 +74,10 @@ html, body {
 
     &--disabled {
       opacity: 0.75;
+      background: #999;
     }
 
-    &:hover {
+    &:hover:not(.mod-button--disabled) {
       background: #fff;
       color: gold;
     }
