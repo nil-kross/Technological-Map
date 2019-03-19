@@ -104,23 +104,21 @@
             value="Закрыть"
             (click)="closeFlyout()"/>
         </div>
-      </div>
-      <div class="col-11">
-        <div class="container-fluid">
-          <div class="row">
-            <span class="col mod-padding">
-              <transition-manager
-                *ngIf="selectedTransitionId >= 0"
-                class="mod-block mod-frame"></transition-manager>
-            </span>
-          </div>
-          <div class="row">
-            <div class="col">
+        <div class="col-11">
+          <div class="container-fluid">
+            <div class="row">
               <operation-manager
                 *ngIf="selectedOperationId >= 0"
                 [operationId]="selectedOperationId"
-                class="mod-block mod-frame"
-                (addOperation)="onAddOperation($event)"></operation-manager>
+                (addOperation)="onAddOperation($event)"
+                class="col mod-block mod-frame">
+              </operation-manager>
+            </div>
+            <div class="row">
+              <transition-manager
+                *ngIf="selectedTransitionId >= 0"
+                class="col mod-block mod-frame">
+              </transition-manager>
             </div>
           </div>
         </div>
