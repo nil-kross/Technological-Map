@@ -1,6 +1,8 @@
 import { IAction } from './IAction';
 import { emptyId } from './EmptyId';
 
+const commonOperationGroups = [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 ];
+
 export const actions: IAction[] = [
   {
     id: emptyId,
@@ -10,236 +12,246 @@ export const actions: IAction[] = [
   {
       id: 1,
       name: 'Вальцевать',
-      operationGroups: []
+      operationGroups: [ 14 ]
   },
   {
       id: 2,
       name: 'Врезаться',
-      operationGroups: []
+      operationGroups: [ 14 ]
   },
   {
       id: 3,
       name: 'Гальтовать',
-      operationGroups: []
+      operationGroups: [ 6 ]
   },
   {
       id: 4,
       name: 'Гравировать',
-      operationGroups: []
+      operationGroups: [ 15 ]
   },
   {
       id: 5,
       name: 'Довести',
-      operationGroups: []
+      operationGroups: [ 6 ]
   },
   {
       id: 6,
       name: 'Долбить',
-      operationGroups: []
+      operationGroups: [ 3, 4 ]
   },
   {
       id: 7,
       name: 'Закруглить',
-      operationGroups: []
+      operationGroups: [ 1, 2, 4 ]
   },
   {
       id: 8,
       name: 'Заточить',
-      operationGroups: []
+      operationGroups: [ 16 ]
   },
   {
       id: 9,
       name: 'Затылковать',
-      operationGroups: []
+      operationGroups: [ 14 ]
   },
   {
       id: 10,
       name: 'Зенкеровать',
-      operationGroups: []
+      operationGroups: [ 1, 2, 5, 8, 10, 12, 14 ]
+  },
+  {
+      id: 11,
+      name: 'Навить',
+      operationGroups: [ 1, 2, 14 ]
+  },
+  {
+    id: 12,
+    name: 'Накатать',
+    operationGroups: [ 1, 2, 4, 11 ]
   },
   {
       id: 13,
       name: 'Нарезать',
-      operationGroups: []
+      operationGroups: [ 1, 2, 5, 8, 10, 11, 12, 14 ]
   },
   {
       id: 14,
       name: 'Обкатать',
-      operationGroups: []
+      operationGroups: [ 4 ]
   },
   {
       id: 15,
       name: 'Опилить',
-      operationGroups: []
+      operationGroups: [ 6 ]
   },
   {
       id: 16,
       name: 'Отрезать',
-      operationGroups: []
+      operationGroups: [ 1, 2, 5, 7, 8, 10, 14 , 15]
   },
   {
       id: 17,
       name: 'Подрезать',
-      operationGroups: []
+      operationGroups: [ 1, 2, 5, 10, 14 ]
   },
   {
       id: 18,
       name: 'Полировать',
-      operationGroups: []
+      operationGroups: [ 1, 2, 5, 6, 12, 14 ]
   },
   {
       id: 19,
       name: 'Притирать',
-      operationGroups: []
+      operationGroups: [ 6 ]
   },
   {
       id: 20,
       name: 'Приработать',
-      operationGroups: []
+      operationGroups: [ 4 ]
   },
   {
       id: 21,
       name: 'Протянуть',
-      operationGroups: []
+      operationGroups: [ 4, 9 ]
   },
   {
       id: 22,
       name: 'Развернуть',
-      operationGroups: []
+      operationGroups: [ 1, 2, 5, 8, 10, 12, 14 ]
   },
   {
       id: 25,
       name: 'Рассверлить',
-      operationGroups: []
+      operationGroups: [ 1, 2, 5, 8, 10, 12, 14 ]
   },
   {
       id: 26,
       name: 'Расточить',
-      operationGroups: []
+      operationGroups: [ 1, 2, 5, 8, 10, 12, 14 ]
   },
   {
       id: 27,
       name: 'Сверлить',
-      operationGroups: []
+      operationGroups: [ 13 ]
   },
   {
       id: 28,
       name: 'Строгать',
-      operationGroups: []
+      operationGroups: [ 13 ]
   },
   {
       id: 29,
       name: 'Суперфинишировать',
-      operationGroups: []
+      operationGroups: [ 6 ]
   },
   {
       id: 30,
       name: 'Точить',
-      operationGroups: []
+      operationGroups: [ 1, 2, 5, 8, 10, 14 ]
   },
   {
       id: 31,
       name: 'Хонинговать',
-      operationGroups: []
+      operationGroups: [ 1, 2, 6 ]
   },
   {
       id: 32,
       name: 'Шевинговать',
-      operationGroups: []
+      operationGroups: [ 1, 2, 4 ]
   },
   {
       id: 33,
       name: 'Шлифовать',
-      operationGroups: []
+      operationGroups: [ 1, 2, 4, 16 ]
   },
   {
       id: 34,
       name: 'Целковать',
-      operationGroups: []
+      operationGroups: [ 1, 2, 5, 8, 10, 12, 14 ]
   },
   {
       id: 35,
       name: 'Центровать',
-      operationGroups: []
+      operationGroups: [ 1, 2, 5, 8, 10, 12, 14, 15 ]
   },
   {
       id: 36,
       name: 'Фрезировать',
-      operationGroups: []
+      operationGroups: [ 1, 2, 4, 5, 8, 11, 15 ]
   },
   {
       id: 80,
       name: 'Выверить',
-      operationGroups: []
+      operationGroups: commonOperationGroups
   },
   {
       id: 81,
       name: 'Закрепить',
-      operationGroups: []
+      operationGroups: commonOperationGroups
   },
   {
       id: 82,
       name: 'Настроить',
-      operationGroups: []
+      operationGroups: commonOperationGroups
   },
   {
       id: 83,
       name: 'Переустановить',
-      operationGroups: []
+      operationGroups: commonOperationGroups
   },
   {
       id: 84,
       name: 'Переустановить и закрепить',
-      operationGroups: []
+      operationGroups: commonOperationGroups
   },
   {
       id: 85,
       name: 'Переустановить, выверить и закрепить',
-      operationGroups: []
+      operationGroups: commonOperationGroups
   },
   {
       id: 86,
       name: 'Переместить',
-      operationGroups: []
+      operationGroups: commonOperationGroups
   },
   {
       id: 87,
       name: 'Поджать',
-      operationGroups: []
+      operationGroups: commonOperationGroups
   },
   {
       id: 88,
       name: 'Проверить',
-      operationGroups: []
+      operationGroups: commonOperationGroups
   },
   {
       id: 89,
       name: 'Смазать',
-      operationGroups: []
+      operationGroups: commonOperationGroups
   },
   {
       id: 90,
       name: 'Снять',
-      operationGroups: []
+      operationGroups: commonOperationGroups
   },
   {
       id: 91,
       name: 'Установить',
-      operationGroups: []
+      operationGroups: commonOperationGroups
   },
   {
       id: 92,
       name: 'Установить и выверить',
-      operationGroups: []
+      operationGroups: commonOperationGroups
   },
   {
       id: 93,
       name: 'Установить и закрепить',
-      operationGroups: []
+      operationGroups: commonOperationGroups
   },
   {
       id: 94,
       name: 'Установить, выверить и закрепить',
-      operationGroups: []
+      operationGroups: commonOperationGroups
   }
 ];

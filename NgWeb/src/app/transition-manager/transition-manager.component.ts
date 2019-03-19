@@ -22,7 +22,19 @@ export class TransitionManagerComponent implements OnInit {
   actionId = 0;
 
   get actionOptions(): IAction[] {
-    return actions;
+    let options = actions;
+
+    if (this.operationId > 0) {
+      const operation = this.operationService.operations.find(x => x.id === this.operationId);
+
+      options = options.map(x => {
+        if (x.operationGroups.includes(operation.id)) {
+          return x;
+        }
+      });
+    }
+
+    return options;
   }
 
   get objectOptions(): IObject[] {
