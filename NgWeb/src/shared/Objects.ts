@@ -1,6 +1,12 @@
 import { IObject } from './IObject';
+import { emptyId } from './EmptyId';
 
 export const objects: IObject[] = [
+  {
+    id: emptyId,
+    fullname: '',
+    shortname: ''
+  },
   {
       id: 1,
       fullname: 'Буртик',

@@ -1,12 +1,21 @@
 <div class="container-fluid">
   <div class="row">
+    <input
+      class="mod-margin mod-button"
+      type="button"
+      value="Удалить"/>
+  </div>
+  <div class="row">
     <span class="col-3">
       <div class="container-fluid">
         <div class="row mod-text">
           <span>Действие</span>
         </div>
         <div class="row">
-          <select class="mod-control col">
+          <select
+            #actionSelect
+            (click)="onActionChange()"
+            class="mod-control col">
             <ng-container *ngFor="let option of actionOptions">
               <option [value]="option.id">{{ option.name }}</option>
             </ng-container>
@@ -20,7 +29,10 @@
           <span>Объект</span>
         </div>
         <div class="row">
-          <select class="mod-control col">
+          <select
+            #objectSelect
+            (click)="onObjectChange()"
+            class="mod-control col">
             <ng-container *ngFor="let option of objectOptions">
               <option [value]="option.id">{{ option.fullname }}</option>
             </ng-container>
@@ -58,5 +70,10 @@
         </div>
       </div>
     </span>
+    <input
+      class="col-1 mod-margin mod-button"
+      type="button"
+      value="Добавить"
+      (click)="onAddButtonClick()"/>
   </div>
 </div>

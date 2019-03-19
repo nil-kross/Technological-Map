@@ -1,3 +1,4 @@
+import { ITransition } from './../shared/ITransition';
 import { FlyoutComponent } from './flyout/flyout.component';
 import { Component, ViewChild } from '@angular/core';
 import { OperationService } from './operation.service';
@@ -28,22 +29,22 @@ export class AppComponent {
     this.flyout.setState(isNewValue);
   }
 
-  selectTransition(transitionId: number) {
-    const isNewValue = this.selectedTransitionId !== transitionId;
+  selectTransition(operationId: number, transitionId: number) {
+    const isNewValue = !(operationId === this.selectedOperationId && this.selectedTransitionId === transitionId);
 
     this.selectedTransitionId = isNewValue ? transitionId : emptyId;
-    this.selectedOperationId = emptyId;
+    this.selectedOperationId = isNewValue ? operationId : emptyId;
     this.flyout.setState(isNewValue);
   }
 
   deselectAll() {
     this.selectOperation(emptyId);
-    this.selectTransition(emptyId);
+    this.selectTransition(emptyId, emptyId);
   }
 
-  closeFlyout() {
-    // this.selectedOperationId = emptyId;
-    // this.selectedTransitionId = emptyId;
+  resetSelection() {
+    this.selectedOperationId = emptyId;
+    this.selectedTransitionId = emptyId;
     this.flyout.close();
   }
 
@@ -51,6 +52,14 @@ export class AppComponent {
     this.selectedOperationId = operation.id;
     this.selectedTransitionId = undefined;
     //this.flyout.close();
+  }
+
+  onAddTransition(transition: ITransition) {
+    const currOperation = this.operationService.operations.find(x => x.id === this.selectedOperationId);
+    const currTransition = Object.assign(transition, { id: currOperation.transitions.length + 1 });
+
+    currOperation.transitions.push(currTransition);
+    this.selectedTransitionId = currTransition.id;
   }
 
   clearAll() {

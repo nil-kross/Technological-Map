@@ -1,6 +1,12 @@
 import { IAction } from './IAction';
+import { emptyId } from './EmptyId';
 
 export const actions: IAction[] = [
+  {
+    id: emptyId,
+    name: '',
+    operationGroups: [],
+  },
   {
       id: 1,
       name: 'Вальцевать',

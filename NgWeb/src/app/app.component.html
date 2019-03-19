@@ -21,17 +21,18 @@
       *ngIf="operations.length > 0">
       <ng-container *ngFor="let operation of operations; index as i">
         <div
+          [class.tree-operation--selected]="operation.id === selectedOperationId"
           class="tree-operation mod-padding-left mod-margin-top">
           <div
-            [class.mod-frame]="operation.id === selectedOperationId"
-            [class.mod-frame--selected]="operation.id === selectedOperationId"
+            [class.mod-frame]="operation.id === selectedOperationId && selectedTransitionId < 0"
+            [class.mod-frame--selected]="operation.id === selectedOperationId && selectedTransitionId < 0"
             (click)="selectOperation(operation.id)"
             class="tree-row mod-text mod-padding-left mod-pointer">Операция {{ i + 1 }} - {{ operation.group.name }}</div>
           <div  *ngFor="let transition of operation.transitions; index as j"
                 class="mod-indent-left">
-            <div  (click)="selectTransition(transition.id)"
-                  [class.mod-frame]="transition.id === selectedTransitionId"
-                  [class.mod-frame--selected]="transition.id === selectedTransitionId"
+            <div  (click)="selectTransition(operation.id, transition.id)"
+                  [class.mod-frame]="selectedOperationId === operation.id && transition.id === selectedTransitionId"
+                  [class.mod-frame--selected]="selectedOperationId === operation.id && transition.id === selectedTransitionId"
                   class="tree-row mod-pointer">
               <span class="mod-text">- </span>
               <span class="mod-text">{{ transition.action.name.toLowerCase() }} </span>
@@ -43,14 +44,14 @@
                 <span class="mod-text">{{ measure.name }}={{ measure.value }} мм</span>
               </ng-container>
             </div>
-              <div
-                (click)="selectOperation(operation.id)"
-                class="tree-row mod-pointer">
-                <span class="mod-text">- </span>
-                <span class="mod-text">{{ operation.instrument.name }}, </span>
-                <span class="mod-text">{{ operation.equipment.name }}, </span>
-                <span class="mod-text">{{ operation.control.name }} </span>
-              </div>
+          </div>
+          <div
+            (click)="selectOperation(operation.id)"
+            class="tree-row mod-indent-left mod-pointer">
+            <span class="mod-text">- </span>
+            <span class="mod-text">{{ operation.instrument.name }}, </span>
+            <span class="mod-text">{{ operation.equipment.name }}, </span>
+            <span class="mod-text">{{ operation.control.name }} </span>
           </div>
           <div
             class="mod-indent-left">
@@ -58,7 +59,7 @@
               class="mod-margin mod-button"
               type="button"
               value="+ Добавить переход"
-              (click)="selectTransition(0)" />
+              (click)="selectTransition(operation.id, 0)" />
           </div>
         </div>
       </ng-container>
@@ -98,17 +99,28 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-1">
-          <input
-            class="mod-margin mod-button"
-            type="button"
-            value="Закрыть"
-            (click)="closeFlyout()"/>
+          <div class="container-fluid">
+            <div class="row">
+              <input
+                class="mod-margin mod-button"
+                type="button"
+                value="Закрыть"
+                (click)="flyout.close()"/>
+            </div>
+            <div class="row">
+              <input
+                class="mod-margin mod-button"
+                type="button"
+                value="Сбросить"
+                (click)="resetSelection()"/>
+            </div>
+          </div>
         </div>
         <div class="col-11">
           <div class="container-fluid">
             <div class="row">
               <operation-manager
-                *ngIf="selectedOperationId >= 0"
+                *ngIf="selectedOperationId >= 0 && selectedTransitionId < 0"
                 [operationId]="selectedOperationId"
                 (addOperation)="onAddOperation($event)"
                 class="col mod-block mod-frame">
@@ -116,7 +128,8 @@
             </div>
             <div class="row">
               <transition-manager
-                *ngIf="selectedTransitionId >= 0"
+                *ngIf="selectedOperationId >= 0 && selectedTransitionId >= 0"
+                (addTransition)="onAddTransition($event)"
                 class="col mod-block mod-frame">
               </transition-manager>
             </div>
