@@ -7,7 +7,7 @@
       </span>
       <select
         #operationGroupSelect
-        [value]="operationGroupId"
+        (change)="onOperationGroupChange()"
         class="mod-control mod-margin">
         <ng-container *ngFor="let option of operationGroupOptions">
           <option [value]="option.id">{{ option.name }}</option>
@@ -15,16 +15,14 @@
       </select>
       <span>
         <input
-          *ngIf="operationId != undefined && operationId === 0"
-          [disabled]="!isControlsValid"
-          [class.mod-button--disabled]="!isControlsValid"
+          [disabled]="!(operationId === 0 && isControlsValid)"
+          [class.mod-button--disabled]="!(operationId === 0 && isControlsValid)"
           class="mod-margin mod-button"
           type="button"
           value="Добавить"
           (click)="onSaveClick($event)"/>
         <input
-          *ngIf="operationId != undefined && operationId > 0"
-          [disabled]="!isControlsValid"
+          [disabled]="!(operationId != undefined && operationId > 0) || !isControlsValid"
           [class.mod-button--disabled]="isNewOperation"
           class="mod-margin mod-button"
           type="button"
@@ -59,7 +57,7 @@
     </div>
     <select
       #instrumentSelect
-      [value]="instrumentId"
+      (change)="onInstrumentChange()"
       class="mod-control col mod-margin">
       <ng-container *ngFor="let option of instrumentOptions">
         <option [value]="option.id">{{ option.name }}</option>
@@ -70,7 +68,7 @@
     </div>
     <select
       #equipmentSelect
-      [value]="equipementId"
+      (change)="onEquipmentChange()"
       class="mod-control col mod-margin">
       <ng-container *ngFor="let option of equipmentOptions">
         <option [value]="option.id">{{ option.name }}</option>
@@ -81,7 +79,7 @@
     </div>
     <select
       #controlSelect
-      [value]="controlId"
+      (change)="onControlChange()"
       class="mod-control col mod-margin">
       <ng-container *ngFor="let option of controlOptions">
         <option [value]="option.id">{{ option.name }}</option>

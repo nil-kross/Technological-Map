@@ -25,7 +25,7 @@ export class OperationManagerComponent implements OnInit, OnChanges {
 
   operationGroupId = 0;
   instrumentId = 0;
-  equipementId = 0;
+  equipmentId = 0;
   controlId = 0;
 
   get operationGroupOptions(): IOperationGroup[] {
@@ -49,11 +49,12 @@ export class OperationManagerComponent implements OnInit, OnChanges {
   }
 
   get isControlsValid(): boolean {
-    return true; // DEBUG
-    return +this.operationGroupSelect.nativeElement.value > 0 &&
-           +this.instrumentSelect.nativeElement.value > 0 &&
-           +this.equipmentSelect.nativeElement.value > 0 &&
-           +this.controlSelect.nativeElement.value > 0;
+    const isValid = this.operationGroupId > 0 &&
+                    this.instrumentId > 0 &&
+                    this.equipmentId > 0 &&
+                    this.controlId > 0;
+
+    return isValid;
   }
 
   constructor(private operationService: OperationService) { }
@@ -67,6 +68,22 @@ export class OperationManagerComponent implements OnInit, OnChanges {
         this.patchUi();
       }
     }
+  }
+
+  onOperationGroupChange() {
+    this.operationGroupId = +this.operationGroupSelect.nativeElement.value;
+  }
+
+  onInstrumentChange() {
+    this.instrumentId = +this.instrumentSelect.nativeElement.value;
+  }
+
+  onEquipmentChange() {
+    this.equipmentId = +this.equipmentSelect.nativeElement.value;
+  }
+
+  onControlChange() {
+    this.controlId = +this.controlSelect.nativeElement.value;
   }
 
   onSaveClick() {
@@ -134,7 +151,7 @@ export class OperationManagerComponent implements OnInit, OnChanges {
 
     this.operationGroupId = operationGroupId;
     this.instrumentId = instrumentId;
-    this.equipementId = equipementId;
+    this.equipmentId = equipementId;
     this.controlId = controlId;
   }
 }
