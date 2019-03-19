@@ -23,17 +23,17 @@
         <div
           class="tree-operation mod-padding-left mod-margin-top">
           <div
-            [class.mod-frame]="i === selectedOperationId"
-            [class.mod-frame--selected]="i === selectedOperationId"
-            (click)="selectOperation(i)"
-            class="tree-row mod-text mod-pointer">Операция {{ i + 1 }} - {{ operation.group.name }}</div>
+            [class.mod-frame]="operation.id === selectedOperationId"
+            [class.mod-frame--selected]="operation.id === selectedOperationId"
+            (click)="selectOperation(operation.id)"
+            class="tree-row mod-text mod-padding-left mod-pointer">Операция {{ i + 1 }} - {{ operation.group.name }}</div>
           <div  *ngFor="let transition of operation.transitions; index as j"
                 class="mod-indent-left">
-            <div  (click)="selectTransition(j)"
-                  [class.mod-frame]="j === selectedTransitionId"
-                  [class.mod-frame--selected]="j === selectedTransitionId"
+            <div  (click)="selectTransition(transition.id)"
+                  [class.mod-frame]="transition.id === selectedTransitionId"
+                  [class.mod-frame--selected]="transition.id === selectedTransitionId"
                   class="tree-row mod-pointer">
-              <span class="mod-text">*</span>
+              <span class="mod-text">- </span>
               <span class="mod-text">{{ transition.action.name.toLowerCase() }} </span>
               <span class="mod-text">{{ transition.object.fullname.toLowerCase() }} </span>
               <span class="mod-text">{{ transition.id }}</span>
@@ -44,9 +44,9 @@
               </ng-container>
             </div>
               <div
-                (click)="selectOperation(i)"
+                (click)="selectOperation(operation.id)"
                 class="tree-row mod-pointer">
-                <span class="mod-text">*</span>
+                <span class="mod-text">- </span>
                 <span class="mod-text">{{ operation.instrument.name }}, </span>
                 <span class="mod-text">{{ operation.equipment.name }}, </span>
                 <span class="mod-text">{{ operation.control.name }} </span>

@@ -9,6 +9,7 @@ import { equipements } from './../../shared/Equipment';
 import { IEquipment } from './../../shared/IEquipment';
 import { instruments } from './../../shared/Instruments';
 import { operationGroups } from './../../shared/OperationGroups';
+import { emptyId } from '../../shared/EmptyId';
 
 @Component({
   selector: 'operation-manager',
@@ -123,17 +124,12 @@ export class OperationManagerComponent implements OnInit, OnChanges {
     let controlId = 0;
 
     if (this.operationService.operations.length > 0) {
-      const operation = this.operationService.operations.find((x, ind) => ind === this.operationId);
+      const operation = this.operationService.operations.find((x) => x.id === this.operationId);
 
-      // this.operationGroupSelect.nativeElement.selectedIndex = this.operationId;
-      // this.instrumentSelect.nativeElement.selectedIndex = operation.instrumentId;
-      // this.equipmentSelect.nativeElement.selectedIndex = operation.equipmentId;
-      // this.controlSelect.nativeElement.selectedIndex = operation.controlId;
-
-      operationGroupId = operation.groupId;
-      instrumentId = operation.instrumentId;
-      equipementId = operation.equipmentId;
-      controlId = operation.controlId;
+      operationGroupId = operation ? operation.groupId : emptyId;
+      instrumentId = operation ? operation.instrumentId : emptyId;
+      equipementId = operation ? operation.equipmentId : emptyId;
+      controlId = operation ? operation.controlId : emptyId;
     }
 
     this.operationGroupId = operationGroupId;
@@ -141,5 +137,4 @@ export class OperationManagerComponent implements OnInit, OnChanges {
     this.equipementId = equipementId;
     this.controlId = controlId;
   }
-
 }
