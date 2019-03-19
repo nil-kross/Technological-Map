@@ -15,7 +15,7 @@
       </select>
       <span>
         <input
-          *ngIf="operationId && operationId === 0"
+          *ngIf="operationId != undefined && operationId === 0"
           [disabled]="!isControlsValid"
           [class.mod-button--disabled]="!isControlsValid"
           class="mod-margin mod-button"
@@ -23,7 +23,7 @@
           value="Добавить"
           (click)="onSaveClick($event)"/>
         <input
-          *ngIf="operationId && operationId > 0"
+          *ngIf="operationId != undefined && operationId > 0"
           [disabled]="!isControlsValid"
           [class.mod-button--disabled]="isNewOperation"
           class="mod-margin mod-button"
