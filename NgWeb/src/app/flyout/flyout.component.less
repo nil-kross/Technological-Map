@@ -2,21 +2,22 @@
   right: 0;
   left: 0;
   bottom: 0;
-  height: 10vh;
   width: 100vw;
   border-top: 2px solid black;
   position: fixed;
-  transition: 0.1s;
+  transition: height 0.5s ease-in;
 
   &-collapsed {
+    height: 8vh;
     background: wheat;
 
     &:hover {
-      background: white;
+      background: beige;
     }
   }
 
   &-expanded {
+    height: 50vh;
     background: wheat;
   }
 }

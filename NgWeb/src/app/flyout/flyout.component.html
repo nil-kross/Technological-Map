@@ -1,13 +1,6 @@
 <div
-  *ngIf="!isOpened"
-  class="flyout flyout-collapsed"
-  [style.height.vh]="5"
-  (click)="onClick(true)">
-</div>
-
-<div
-  *ngIf="isOpened"
-  class="flyout flyout-expanded"
-  [style.height.vh]="50">
+  class="flyout"
+  [class.flyout-expanded]="isOpened"
+  [class.flyout-collapsed]="!isOpened">
   <ng-content></ng-content>
 </div>
