@@ -81,9 +81,12 @@ export class TransitionManagerComponent implements OnInit {
       const operation = this.operationService.operations.find(x => x.id === this.operationId);
       const transition = operation.transitions.find(x => x.id === this.transitionId);
 
-      objectId = transition.objectId;
-      actionId = transition.actionId;
+      if (transition) {
+        objectId = transition.objectId;
+        actionId = transition.actionId;
+      }
     }
+
 
     this.actionId = actionId;
     this.objectId = objectId;

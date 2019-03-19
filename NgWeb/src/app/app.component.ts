@@ -43,15 +43,18 @@ export class AppComponent {
   }
 
   resetSelection() {
-    this.selectedOperationId = emptyId;
     this.selectedTransitionId = emptyId;
+    this.selectedOperationId = emptyId;
     this.flyout.close();
   }
 
   onAddOperation(operation: IOperation) {
-    this.selectedOperationId = operation.id;
-    this.selectedTransitionId = undefined;
-    //this.flyout.close();
+    const currOperation = Object.assign(operation, { id: this.operationService.operations.length + 1 });
+
+    this.selectedTransitionId = emptyId;
+    this.selectedOperationId = currOperation.id;
+
+    this.operationService.add(currOperation);
   }
 
   onAddTransition(transition: ITransition) {
@@ -61,6 +64,7 @@ export class AppComponent {
     currOperation.transitions.push(currTransition);
     this.selectedTransitionId = currTransition.id;
   }
+
 
   clearAll() {
     if (window.confirm('Вы уверены, что ходите удалить все операции и переходы?')) {

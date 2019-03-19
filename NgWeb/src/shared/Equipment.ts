@@ -1,8 +1,9 @@
 import { IEquipment } from './IEquipment';
+import { emptyId } from './EmptyId';
 
 export const equipements: IEquipment[] = [
   {
-    id: 0,
+    id: emptyId,
     name: ''
   },
   {

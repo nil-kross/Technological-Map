@@ -64,7 +64,7 @@ export class OperationManagerComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     for (const propName in changes) {
-      if (propName === 'operationId' && changes[propName].currentValue >= 0) {
+      if (this.operationId >= 0) {
         this.patchUi();
       }
     }
@@ -100,7 +100,7 @@ export class OperationManagerComponent implements OnInit, OnChanges {
       const equipment = equipements.find(x => x.id === equipmentId);
       const control = controls.find(x => x.id === controlId);
       const operation: IOperation = {
-        id: this.operationService.operations.length + 1,
+        id: 0,
         group: operationGroup,
         groupId: operationGroupId,
         instrument: instrument,
@@ -112,13 +112,7 @@ export class OperationManagerComponent implements OnInit, OnChanges {
         transitions: []
       };
 
-      this.operationService.add(operation);
       this.addOperation.emit(operation);
-
-      this.operationGroupSelect.nativeElement.value = (-1).toString();
-      this.instrumentSelect.nativeElement.value = (-1).toString();
-      this.equipmentSelect.nativeElement.value = (-1).toString();
-      this.controlSelect.nativeElement.value = (-1).toString();
     }
   }
 

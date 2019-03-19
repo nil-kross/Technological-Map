@@ -1,8 +1,9 @@
 import { IControl } from './IControl';
+import { emptyId } from './EmptyId';
 
 export const controls: IControl[] = [
     {
-      id: 0,
+      id: emptyId,
       name: ''
     },
     {

@@ -1,8 +1,9 @@
 import { IOperationGroup } from './IOperationGroup';
+import { emptyId } from './EmptyId';
 
 export const operationGroups: IOperationGroup[] = [
   {
-    id: 0,
+    id: emptyId,
     name: ''
   },
   {
