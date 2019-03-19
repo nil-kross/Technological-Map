@@ -40,7 +40,7 @@
         </div>
       </div>
     </span>
-    <span class="col-1">
+    <span class="col-2">
       <div class="container-fluid">
         <div class="row mod-text">
           <span>Идент.</span>
@@ -53,7 +53,7 @@
         </div>
       </div>
     </span>
-    <span class="col-2">
+    <span class="col-3">
       <div class="container-fluid">
         <div class="row mod-text">
           <span>Размер 1</span>
@@ -70,10 +70,15 @@
         </div>
       </div>
     </span>
-    <input
-      class="col-1 mod-margin mod-button"
-      type="button"
-      value="Добавить"
-      (click)="onAddButtonClick()"/>
+    <span
+      class="col-1">
+      <input
+        [disabled]="!(transitionId === 0 && isFormValid)"
+        [class.mod-button--disabled]="!(transitionId === 0 && isFormValid)"
+        class="mod-button"
+        type="button"
+        value="Добавить"
+        (click)="onAddButtonClick()"/>
+    </span>
   </div>
 </div>

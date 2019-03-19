@@ -1,22 +1,25 @@
 import { ITransition } from './../../shared/ITransition';
 import { actions } from './../../shared/Actions';
-import { Component, OnInit, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Output, EventEmitter, Input, SimpleChanges } from '@angular/core';
 import { IAction } from '../../shared/IAction';
 import { objects } from '../../shared/Objects';
 import { IObject } from '../../shared/IObject';
+import { OperationService } from '../operation.service';
+import { emptyId } from '../../shared/EmptyId';
 
 @Component({
   selector: 'transition-manager',
   templateUrl: './transition-manager.component.html'
 })
 export class TransitionManagerComponent implements OnInit {
+  @Input() operationId: number;
+  @Input() transitionId: number;
   @ViewChild('actionSelect') actionSelect: ElementRef<HTMLSelectElement>;
   @ViewChild('objectSelect') objectSelect: ElementRef<HTMLSelectElement>;
   @Output() addTransition = new EventEmitter<ITransition>();
 
   objectId = 0;
   actionId = 0;
-  transitionId = 0;
 
   get actionOptions(): IAction[] {
     return actions;
@@ -33,9 +36,17 @@ export class TransitionManagerComponent implements OnInit {
     return isValid;
   }
 
-  constructor() { }
+  constructor(private operationService: OperationService) { }
 
   ngOnInit() {
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    for (const propName in changes) {
+      if (this.operationId >= 0 && this.transitionId >= 0) {
+        this.patchUi();
+      }
+    }
   }
 
   onActionChange() {
@@ -59,5 +70,22 @@ export class TransitionManagerComponent implements OnInit {
     };
 
     this.addTransition.emit(transition);
+  }
+
+  private patchUi() {
+    let objectId = emptyId;
+    let actionId = emptyId;
+
+    if (this.operationId >= 0 &&
+        this.transitionId >= 0) {
+      const operation = this.operationService.operations.find(x => x.id === this.operationId);
+      const transition = operation.transitions.find(x => x.id === this.transitionId);
+
+      objectId = transition.objectId;
+      actionId = transition.actionId;
+    }
+
+    this.actionId = actionId;
+    this.objectId = objectId;
   }
 }

@@ -129,6 +129,8 @@
             <div class="row">
               <transition-manager
                 *ngIf="selectedOperationId >= 0 && selectedTransitionId >= 0"
+                [operationId]="selectedOperationId"
+                [transitionId]="selectedTransitionId"
                 (addTransition)="onAddTransition($event)"
                 class="col mod-block mod-frame">
               </transition-manager>
