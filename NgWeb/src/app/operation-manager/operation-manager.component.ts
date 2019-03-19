@@ -27,8 +27,6 @@ export class OperationManagerComponent implements OnInit, OnChanges {
   equipementId = 0;
   controlId = 0;
 
-  private emptyId = 0;
-
   get operationGroupOptions(): IOperationGroup[] {
     return operationGroups;
   }
