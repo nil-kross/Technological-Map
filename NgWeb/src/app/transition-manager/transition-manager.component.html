@@ -10,6 +10,7 @@
     <input
       [disabled]="transitionId <= 0"
       [class.mod-button--disabled]="transitionId <= 0"
+      (click)="onDeleteButtonClick()"
       class="mod-margin mod-button"
       type="button"
       value="Удалить"/>

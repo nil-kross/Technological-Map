@@ -18,6 +18,7 @@ export class TransitionManagerComponent implements OnInit, OnChanges {
   @ViewChild('objectSelect') objectSelect: ElementRef<HTMLSelectElement>;
   @Output() addTransition = new EventEmitter<ITransition>();
   @Output() editTransition = new EventEmitter<ITransition>();
+  @Output() deleteTransition = new EventEmitter<number>();
 
   objectId = emptyId;
   actionId = emptyId;
@@ -97,6 +98,10 @@ export class TransitionManagerComponent implements OnInit, OnChanges {
 
       this.editTransition.emit(transition);
     }
+  }
+
+  onDeleteButtonClick() {
+    this.deleteTransition.emit(this.transitionId);
   }
 
   private patchUi() {

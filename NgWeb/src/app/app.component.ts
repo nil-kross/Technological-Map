@@ -99,6 +99,10 @@ export class AppComponent {
     this.selectedTransitionId = transition.id;
   }
 
+  onDeleteTransition(transitionId: number) {
+    this.operationService.deleteTransition(this.selectedOperationId, transitionId);
+  }
+
   clearAll() {
     if (window.confirm('Вы уверены, что ходите удалить все операции и переходы?')) {
       this.operationService.clearAll();

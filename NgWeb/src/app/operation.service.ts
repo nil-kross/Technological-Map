@@ -47,6 +47,22 @@ export class OperationService {
       this._operations.push(operation);
     }
 
+    deleteTransition(operationId: number, transitionId: number): boolean {
+      let isDone = false;
+      const operation = this.operations.find(x => x.id == operationId);
+
+      if (operation) {
+        const transition = operation.transitions.find(x => x.id === transitionId);
+
+        if (transition) {
+          Object.assign(operation, { transitions: operation.transitions.filter(x => x.id !== transitionId) });
+          isDone = true;
+        }
+      }
+
+      return isDone;
+    }
+
     clearAll() {
       this._operations = [];
     }
