@@ -31,7 +31,7 @@ export class TransitionManagerComponent implements OnInit {
         if (x.operationGroups.includes(operation.id)) {
           return x;
         }
-      });
+      }).filter(x => x);
     }
 
     return options;

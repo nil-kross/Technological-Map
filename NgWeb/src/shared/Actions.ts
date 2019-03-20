@@ -1,14 +1,8 @@
 import { IAction } from './IAction';
-import { emptyId } from './EmptyId';
 
 const commonOperationGroups = [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16 ];
 
 export const actions: IAction[] = [
-  {
-    id: emptyId,
-    name: '',
-    operationGroups: [],
-  },
   {
       id: 1,
       name: 'Вальцевать',
