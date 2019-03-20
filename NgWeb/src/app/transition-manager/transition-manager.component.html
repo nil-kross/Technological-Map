@@ -1,6 +1,13 @@
 <div class="container-fluid">
   <div class="row">
     <input
+      [disabled]="!(transitionId !== 0 && isFormValid)"
+      [class.mod-button--disabled]="!(transitionId !== 0 && isFormValid)"
+      (click)="onEditButtonClick()"
+      class="mod-margin mod-button"
+      type="button"
+      value="Изменить"/>
+    <input
       [disabled]="transitionId <= 0"
       [class.mod-button--disabled]="transitionId <= 0"
       class="mod-margin mod-button"

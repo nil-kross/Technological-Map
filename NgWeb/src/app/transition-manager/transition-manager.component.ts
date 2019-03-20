@@ -1,6 +1,6 @@
 import { ITransition } from './../../shared/ITransition';
 import { actions } from './../../shared/Actions';
-import { Component, OnInit, ViewChild, ElementRef, Output, EventEmitter, Input, SimpleChanges } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Output, EventEmitter, Input, SimpleChanges, OnChanges } from '@angular/core';
 import { IAction } from '../../shared/IAction';
 import { objects } from '../../shared/Objects';
 import { IObject } from '../../shared/IObject';
@@ -11,12 +11,13 @@ import { emptyId } from '../../shared/EmptyId';
   selector: 'transition-manager',
   templateUrl: './transition-manager.component.html'
 })
-export class TransitionManagerComponent implements OnInit {
+export class TransitionManagerComponent implements OnInit, OnChanges {
   @Input() operationId: number;
   @Input() transitionId: number;
   @ViewChild('actionSelect') actionSelect: ElementRef<HTMLSelectElement>;
   @ViewChild('objectSelect') objectSelect: ElementRef<HTMLSelectElement>;
   @Output() addTransition = new EventEmitter<ITransition>();
+  @Output() editTransition = new EventEmitter<ITransition>();
 
   objectId = emptyId;
   actionId = emptyId;
@@ -81,18 +82,21 @@ export class TransitionManagerComponent implements OnInit {
   }
 
   onAddButtonClick() {
-    const action = actions.find(x => x.id === this.actionId);
-    const object = objects.find(x => x.id === this.objectId);
-    const transition: ITransition = {
-      id: 0,
-      actionId: this.actionId,
-      action: action,
-      objectId: this.objectId,
-      object: object,
-      measures: [] // TODO
-    };
+    const transition = this.buildTransitionFromForm();
 
-    this.addTransition.emit(transition);
+    if (transition) {
+      this.addTransition.emit(transition);
+    }
+  }
+
+  onEditButtonClick() {
+    let transition = this.buildTransitionFromForm();
+
+    if (transition) {
+      transition = Object.assign(transition, { id: this.transitionId });
+
+      this.editTransition.emit(transition);
+    }
   }
 
   private patchUi() {
@@ -112,5 +116,20 @@ export class TransitionManagerComponent implements OnInit {
 
     this.actionId = actionId;
     this.objectId = objectId;
+  }
+
+  private buildTransitionFromForm(): ITransition {
+    const action = actions.find(x => x.id === this.actionId);
+    const object = objects.find(x => x.id === this.objectId);
+    const transition: ITransition = {
+      id: 0,
+      actionId: this.actionId,
+      action: action,
+      objectId: this.objectId,
+      object: object,
+      measures: [] // TODO
+    };
+
+    return transition;
   }
 }

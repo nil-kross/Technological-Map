@@ -83,6 +83,21 @@ export class AppComponent {
     this.selectedTransitionId = currTransition.id;
   }
 
+  onEditTransition(transition: ITransition) {
+    const operation = this.operationService.operations.find(x => x.id === this.selectedOperationId);
+    const oldTransition = operation.transitions.find(x => x.id === this.selectedTransitionId);
+    const currTransition = Object.assign(oldTransition, {
+      id: this.selectedTransitionId,
+      action: transition.action,
+      actionId: transition.actionId,
+      object: transition.object,
+      objectId: transition.objectId,
+      // measures: transition.measures // TODO
+    });
+
+    this.selectedOperationId = operation.id;
+    this.selectedTransitionId = transition.id;
+  }
 
   clearAll() {
     if (window.confirm('Вы уверены, что ходите удалить все операции и переходы?')) {

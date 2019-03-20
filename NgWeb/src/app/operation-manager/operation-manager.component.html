@@ -28,7 +28,7 @@
           class="mod-margin mod-button"
           type="button"
           value="Изменить"
-          (click)="onEditClick($event)"/>
+          (click)="onEditClick()"/>
         <input
           [disabled]="!(operationId != undefined && operationId > 0) || !isControlsValid"
           [class.mod-button--disabled]="isNewOperation"
