@@ -1,6 +1,8 @@
 <div class="container-fluid">
   <div class="row">
     <input
+      [disabled]="transitionId <= 0"
+      [class.mod-button--disabled]="transitionId <= 0"
       class="mod-margin mod-button"
       type="button"
       value="Удалить"/>
@@ -32,9 +34,14 @@
         <div class="row">
           <select
             #objectSelect
+            [disabled]="actionId <= -1"
+            [class.mod-button--disabled]="actionId <= -1"
             [value]="objectId"
             (click)="onObjectChange()"
             class="mod-control col">
+            <option
+              *ngIf="objectId <= 0"
+              value="-1"></option>
             <ng-container *ngFor="let option of objectOptions">
               <option [value]="option.id">{{ option.fullname }}</option>
             </ng-container>

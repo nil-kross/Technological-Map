@@ -29,8 +29,8 @@ export class OperationService {
         };
         const kek: IOperation = {
             id: 1,
-            group: operationGroups.find(x => x.id === 1),
-            groupId: 1,
+            operationGroup: operationGroups.find(x => x.id === 1),
+            operationGroupId: 1,
             instrument: instruments.find(x => x.id === 1),
             instrumentId: 1,
             control: controls.find(x => x.id === 1),

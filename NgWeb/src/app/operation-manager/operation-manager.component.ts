@@ -101,8 +101,8 @@ export class OperationManagerComponent implements OnInit, OnChanges {
       const control = controls.find(x => x.id === controlId);
       const operation: IOperation = {
         id: 0,
-        group: operationGroup,
-        groupId: operationGroupId,
+        operationGroup: operationGroup,
+        operationGroupId: operationGroupId,
         instrument: instrument,
         instrumentId,
         equipment: equipment,
@@ -137,7 +137,7 @@ export class OperationManagerComponent implements OnInit, OnChanges {
     if (this.operationService.operations.length > 0) {
       const operation = this.operationService.operations.find((x) => x.id === this.operationId);
 
-      operationGroupId = operation ? operation.groupId : emptyId;
+      operationGroupId = operation ? operation.operationGroupId : emptyId;
       instrumentId = operation ? operation.instrumentId : emptyId;
       equipementId = operation ? operation.equipmentId : emptyId;
       controlId = operation ? operation.controlId : emptyId;

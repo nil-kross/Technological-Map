@@ -18,17 +18,17 @@ export class TransitionManagerComponent implements OnInit {
   @ViewChild('objectSelect') objectSelect: ElementRef<HTMLSelectElement>;
   @Output() addTransition = new EventEmitter<ITransition>();
 
-  objectId = 0;
-  actionId = 0;
+  objectId = emptyId;
+  actionId = emptyId;
 
   get actionOptions(): IAction[] {
     let options = actions;
 
-    if (this.operationId > 0) {
+    if (this.operationId > emptyId) {
       const operation = this.operationService.operations.find(x => x.id === this.operationId);
 
       options = options.map(x => {
-        if (x.operationGroups.includes(operation.id)) {
+        if (x.operationGroups.includes(operation.operationGroupId)) {
           return x;
         }
       }).filter(x => x);
@@ -40,17 +40,15 @@ export class TransitionManagerComponent implements OnInit {
   get objectOptions(): IObject[] {
     let options = objects;
 
-    if (this.operationId > 0) {
-      const operation = this.operationService.operations.find(x => x.id === this.operationId);
-
+    if (this.actionId > emptyId) {
       options = options.map(x => {
-        if (x.operationGroups.includes(operation.id)) {
+        if (x.actionIds.includes(this.actionId)) {
           return x;
         }
       }).filter(x => x);
     }
 
-    return objects;
+    return options;
   }
 
   get isFormValid(): boolean {
@@ -75,6 +73,7 @@ export class TransitionManagerComponent implements OnInit {
 
   onActionChange() {
     this.actionId = +this.actionSelect.nativeElement.value;
+    this.objectId = emptyId;
   }
 
   onObjectChange() {
@@ -110,7 +109,6 @@ export class TransitionManagerComponent implements OnInit {
         actionId = transition.actionId;
       }
     }
-
 
     this.actionId = actionId;
     this.objectId = objectId;

@@ -27,7 +27,7 @@
             [class.mod-frame]="operation.id === selectedOperationId && selectedTransitionId < 0"
             [class.mod-frame--selected]="operation.id === selectedOperationId && selectedTransitionId < 0"
             (click)="selectOperation(operation.id)"
-            class="tree-row mod-text mod-padding-left mod-pointer">Операция {{ i + 1 }} - {{ operation.group.name }}</div>
+            class="tree-row mod-text mod-padding-left mod-pointer">Операция {{ i + 1 }} - {{ operation.operationGroup.name }}</div>
           <div  *ngFor="let transition of operation.transitions; index as j"
                 class="mod-indent-left">
             <div  (click)="selectTransition(operation.id, transition.id)"

@@ -6,8 +6,8 @@ import { IControl } from './IControl';
 import { ITransition } from './ITransition';
 
 export interface IOperation extends IId {
-    group: IOperationGroup;
-    groupId: number;
+    operationGroup: IOperationGroup;
+    operationGroupId: number;
     instrument: IInstrument;
     instrumentId: number;
     equipment: IEquipment;
