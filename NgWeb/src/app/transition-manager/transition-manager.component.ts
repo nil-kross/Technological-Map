@@ -38,6 +38,18 @@ export class TransitionManagerComponent implements OnInit {
   }
 
   get objectOptions(): IObject[] {
+    let options = objects;
+
+    if (this.operationId > 0) {
+      const operation = this.operationService.operations.find(x => x.id === this.operationId);
+
+      options = options.map(x => {
+        if (x.operationGroups.includes(operation.id)) {
+          return x;
+        }
+      }).filter(x => x);
+    }
+
     return objects;
   }
 
