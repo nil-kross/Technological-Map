@@ -23,6 +23,7 @@ export class OperationManagerComponent implements OnInit, OnChanges {
   @ViewChild('controlSelect') controlSelect: ElementRef<HTMLSelectElement>;
   @Output() addOperation = new EventEmitter<IOperation>();
   @Output() editOperation = new EventEmitter<IOperation>();
+  @Output() deleteOperation = new EventEmitter<number>();
 
   operationGroupId = 0;
   instrumentId = 0;
@@ -105,8 +106,8 @@ export class OperationManagerComponent implements OnInit, OnChanges {
     }
   }
 
-  onDeleteClick() {
-    // TODO
+  onDeleteButtonClick() {
+    this.deleteOperation.emit(this.operationId);
   }
 
   onMoveUpClick() {

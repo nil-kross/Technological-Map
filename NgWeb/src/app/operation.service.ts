@@ -47,6 +47,18 @@ export class OperationService {
       this._operations.push(operation);
     }
 
+    deleteOperation(operationId: number): boolean {
+      let isDone = false;
+      const operation = this.operations.find(x => x.id === operationId);
+
+      if (operation) {
+        this._operations = this._operations.filter(x => x.id !== operationId);
+        isDone = true;
+      }
+
+      return isDone;
+    }
+
     deleteTransition(operationId: number, transitionId: number): boolean {
       let isDone = false;
       const operation = this.operations.find(x => x.id == operationId);

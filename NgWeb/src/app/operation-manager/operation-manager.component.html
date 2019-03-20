@@ -30,12 +30,12 @@
           value="Изменить"
           (click)="onEditClick()"/>
         <input
-          [disabled]="!(operationId != undefined && operationId > 0) || !isControlsValid"
-          [class.mod-button--disabled]="isNewOperation"
+          [disabled]="operationId === 0"
+          [class.mod-button--disabled]="operationId === 0"
           class="mod-margin mod-button"
           type="button"
           value="Удалить"
-          (click)="onDeleteClick($event)"/>
+          (click)="onDeleteButtonClick($event)"/>
       </span>
       <span>
         <input

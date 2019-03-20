@@ -75,6 +75,11 @@ export class AppComponent {
     this.selectedOperationId = operation.id;
   }
 
+  onDeleteOperation(operationId: number) {
+    this.operationService.deleteOperation(operationId);
+    this.resetSelection();
+  }
+
   onAddTransition(transition: ITransition) {
     const currOperation = this.operationService.operations.find(x => x.id === this.selectedOperationId);
     const currTransition = Object.assign(transition, { id: currOperation.transitions.length + 1 });
