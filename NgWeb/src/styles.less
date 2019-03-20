@@ -26,7 +26,6 @@ html, body {
 }
 
 .light-border {
-  background: white;
   border: 1px solid #444;
 }
 
@@ -150,5 +149,26 @@ html, body {
     &--selected {
       border-color: lawngreen;
     }
+  }
+}
+
+.dragAndDrop {
+  &-operation {
+    border: 2px solid #aaa;
+    border-radius: 5px;
+    margin-top: @margin;
+    height: 50px;
+    border-top: none;
+    border-bottom: none;
+    background: linear-gradient(white, lawngreen, white);
+  }
+
+  &-transition {
+    border: 2px solid #aaa;
+    border-radius: 5px;
+    height: 35px;
+    border-top: none;
+    border-bottom: none;
+    background: linear-gradient(white, gold, white);
   }
 }

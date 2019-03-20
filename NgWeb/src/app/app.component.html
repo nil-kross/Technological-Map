@@ -1,5 +1,8 @@
 <div
   [class.map--expanded]="flyout.isOpened"
+
+  (mouseup)="onMouseUp()"
+  (mousedown)="onMouseDown()"
   class="map">
   <div class="container-fluid">
     <div class="row">
@@ -35,6 +38,8 @@
                     <span class="mod-text">{{ measure.name }}={{ measure.value }} мм</span>
                   </ng-container>
                 </div>
+                <div
+                  class="dragAndDrop-transition"></div>
               </div>
               <div
                 (click)="selectOperation(operation.id, true)"
@@ -53,6 +58,8 @@
                   (click)="selectTransition(operation.id, 0)" />
               </div>
             </div>
+            <div
+              class="dragAndDrop-operation"></div>
           </ng-container>
         </ng-container>
       </div>
@@ -72,6 +79,21 @@
           (click)="clearAll()"/>
       </div>
     </div>
+    <div class="row">
+      <div class="col">
+        <input
+          class="mod-margin mod-button"
+          type="button"
+          value="[S] Сохранить в файл"
+          (click)="saveToFile()" />
+        <input
+          #loadFileInput
+          class="mod-margin mod-button"
+          type="file"
+          value="Загрузить из файла"
+          (change)="onFileLoaded()"
+          (click)="loadFromFile()" />
+      </div>
     </div>
   </div>
 </div>

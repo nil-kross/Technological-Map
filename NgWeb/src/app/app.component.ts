@@ -1,6 +1,7 @@
+import { objects } from './../shared/Objects';
 import { ITransition } from './../shared/ITransition';
 import { FlyoutComponent } from './flyout/flyout.component';
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { OperationService } from './operation.service';
 import { IOperation } from '../shared/IOperation';
 import { emptyId } from '../shared/EmptyId';
@@ -11,15 +12,22 @@ import { emptyId } from '../shared/EmptyId';
 })
 export class AppComponent {
   @ViewChild('flyout') flyout: FlyoutComponent;
+  @ViewChild('loadFileInput') loadFileInput: ElementRef<HTMLInputElement>;
 
   selectedOperationId: number;
   selectedTransitionId: number;
+  isDragAndDrop = false;
 
   get operations() {
     return this.operationService.operations;
   }
 
   constructor(private operationService: OperationService) { }
+
+  onFileLoaded() {
+    const val = this.loadFileInput.nativeElement.value;
+    console.log(val);
+  }
 
   selectOperation(operationId: number, isForced: boolean = false) {
     const isNewValue = isForced || this.selectedTransitionId >= 0 || this.selectedOperationId !== operationId;
@@ -106,6 +114,7 @@ export class AppComponent {
 
   onDeleteTransition(transitionId: number) {
     this.operationService.deleteTransition(this.selectedOperationId, transitionId);
+    this.resetSelection();
   }
 
   clearAll() {
@@ -113,5 +122,25 @@ export class AppComponent {
       this.operationService.clearAll();
       this.deselectAll();
     }
+  }
+
+  saveToFile() {
+
+    const json = JSON.stringify(this.operationService.operations);
+    const obj = JSON.parse(json);
+
+
+  }
+
+  loadFromFile() {
+
+  }
+
+  onMouseDown() {
+    this.isDragAndDrop = true;
+  }
+
+  onMouseUp() {
+    this.isDragAndDrop = false;
   }
 }
