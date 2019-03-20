@@ -21,8 +21,8 @@ export class AppComponent {
 
   constructor(private operationService: OperationService) { }
 
-  selectOperation(operationId: number) {
-    const isNewValue = this.selectedOperationId !== operationId;
+  selectOperation(operationId: number, isForced: boolean = false) {
+    const isNewValue = isForced || this.selectedTransitionId >= 0 || this.selectedOperationId !== operationId;
 
     this.selectedOperationId = isNewValue ? operationId : emptyId;
     this.selectedTransitionId = emptyId;
