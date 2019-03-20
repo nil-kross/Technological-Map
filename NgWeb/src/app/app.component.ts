@@ -32,6 +32,7 @@ export class AppComponent {
   selectOperation(operationId: number, isForced: boolean = false) {
     const isNewValue = isForced || this.selectedTransitionId >= 0 || this.selectedOperationId !== operationId;
 
+    this.isDragAndDrop = isNewValue;
     this.selectedOperationId = isNewValue ? operationId : emptyId;
     this.selectedTransitionId = emptyId;
     this.flyout.setState(isNewValue);
@@ -40,6 +41,7 @@ export class AppComponent {
   selectTransition(operationId: number, transitionId: number) {
     const isNewValue = !(operationId === this.selectedOperationId && this.selectedTransitionId === transitionId);
 
+    this.isDragAndDrop = isNewValue;
     this.selectedTransitionId = isNewValue ? transitionId : emptyId;
     this.selectedOperationId = isNewValue ? operationId : emptyId;
     this.flyout.setState(isNewValue);
@@ -143,4 +145,33 @@ export class AppComponent {
   onMouseUp() {
     this.isDragAndDrop = false;
   }
+
+  onOperationMoveStarted(operationId: number) {
+    // this.selectedOperationId = operationId;
+    // this.selectedTransitionId = emptyId;
+    // this.isDragAndDrop = true;
+  }
+
+  onOperationMoveEnded(oldOperationId: number) {
+    this.operationService.switchOperations(this.selectedOperationId, oldOperationId);
+    this.isDragAndDrop = false;
+  }
+
+  onTransitionMoveStarted(operationId: number, transitionId: number) {
+    // this.selectedOperationId = operationId;
+    // this.selectedTransitionId = transitionId;
+    // this.isDragAndDrop = true;
+  }
+
+  onTransitionMoveEnded(oldOperationId: number, oldTransitionId: number) {
+    this.operationService.switchTransitions(this.selectedOperationId, this.selectedTransitionId, oldOperationId, oldTransitionId);
+    this.isDragAndDrop = false;
+  }
+
+  onDragAndDropEnded() {
+    // setTimeout(() => {
+    //   this.isDragAndDrop = false;
+    // }, 20);
+  }
+
 }

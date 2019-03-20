@@ -37,10 +37,23 @@ export class OperationService {
             controlId: 1,
             equipment: equipements.find(x => x.id === 1),
             equipmentId: 1,
-            transitions: [transition]
+            transitions: [ transition ]
+        };
+        const lol: IOperation = {
+          id: 2,
+          operationGroup: operationGroups.find(x => x.id === 14),
+          operationGroupId: 14,
+          instrument: instruments.find(x => x.id === 1),
+          instrumentId: 1,
+          control: controls.find(x => x.id === 1),
+          controlId: 1,
+          equipment: equipements.find(x => x.id === 1),
+          equipmentId: 1,
+          transitions: [ transition ]
         };
 
         this._operations.push(kek);
+        this._operations.push(lol);
     }
 
     add(operation: IOperation) {
@@ -59,6 +72,34 @@ export class OperationService {
       return isDone;
     }
 
+    switchOperations(curOperationId: number, oldOperationId: number): boolean {
+      const curOperation = this.operations.find(x => x.id === curOperationId);
+      const oldOperation = this.operations.find(x => x.id === oldOperationId);
+      let isDone = false;
+
+      if (curOperation && oldOperation) {
+        const items = [];
+
+        this._operations.forEach((item, index) => {
+          let curItem = item;
+
+          if (item.id === curOperationId) {
+            curItem = oldOperation;
+            isDone = true;
+          }
+          if (item.id === oldOperationId) {
+            curItem = curOperation;
+            isDone = true;
+          }
+          items.push(curItem);
+        });
+
+        this._operations = items;
+      }
+
+      return isDone;
+    }
+
     deleteTransition(operationId: number, transitionId: number): boolean {
       let isDone = false;
       const operation = this.operations.find(x => x.id == operationId);
@@ -69,6 +110,40 @@ export class OperationService {
         if (transition) {
           Object.assign(operation, { transitions: operation.transitions.filter(x => x.id !== transitionId) });
           isDone = true;
+        }
+      }
+
+      return isDone;
+    }
+
+    switchTransitions(curOperationId: number, curTransitionId: number, oldOperationId: number, oldTransitionId: number): boolean {
+      const oldOperation = this.operations.find(x => x.id === oldOperationId);
+      const curOperation = this.operations.find(x => x.id === curOperationId);
+      let isDone = false;
+
+      if (oldOperation && curOperation) {
+        const oldTransition = oldOperation.transitions.find(x => x.id === oldTransitionId);
+        const curTransition = curOperation.transitions.find(x => x.id === curTransitionId);
+
+        if (oldTransition && curTransition) {
+          this._operations.forEach(item => {
+            const items = [];
+
+            item.transitions.forEach(x => {
+              let curItem = x;
+
+              if (item.id === oldOperationId && x.id === oldTransitionId) {
+                curItem = curTransition;
+                isDone = true;
+              }
+              if (item.id === curOperationId && x.id === curTransitionId) {
+                curItem = oldTransition;
+                isDone = true;
+              }
+              items.push(curItem);
+            });
+            Object.assign(item, { transitions: items });
+          });
         }
       }
 
