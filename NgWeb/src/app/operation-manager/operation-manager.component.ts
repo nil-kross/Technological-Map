@@ -22,6 +22,7 @@ export class OperationManagerComponent implements OnInit, OnChanges {
   @ViewChild('equipmentSelect') equipmentSelect: ElementRef<HTMLSelectElement>;
   @ViewChild('controlSelect') controlSelect: ElementRef<HTMLSelectElement>;
   @Output() addOperation = new EventEmitter<IOperation>();
+  @Output() editOperation = new EventEmitter<IOperation>();
 
   operationGroupId = 0;
   instrumentId = 0;
@@ -87,32 +88,20 @@ export class OperationManagerComponent implements OnInit, OnChanges {
   }
 
   onSaveClick() {
-    const operationGroupId = +this.operationGroupSelect.nativeElement.value;
-    const instrumentId = +this.instrumentSelect.nativeElement.value;
-    const equipmentId = +this.equipmentSelect.nativeElement.value;
-    const controlId = +this.controlSelect.nativeElement.value;
-    console.log(`${operationGroupId} ${instrumentId} ${equipmentId} ${controlId}`); // DEBUG
+    const operation = this.buildOperationFromForm();
 
-    if (operationGroupId && instrumentId
-        && equipmentId && controlId) {
-      const operationGroup = operationGroups.find(x => x.id === operationGroupId);
-      const instrument = instruments.find(x => x.id === instrumentId);
-      const equipment = equipements.find(x => x.id === equipmentId);
-      const control = controls.find(x => x.id === controlId);
-      const operation: IOperation = {
-        id: 0,
-        operationGroup: operationGroup,
-        operationGroupId: operationGroupId,
-        instrument: instrument,
-        instrumentId,
-        equipment: equipment,
-        equipmentId: equipmentId,
-        control: control,
-        controlId: controlId,
-        transitions: []
-      };
-
+    if (operation) {
       this.addOperation.emit(operation);
+    }
+  }
+
+  onEditClick() {
+    let operation = this.buildOperationFromForm();
+
+    if (operation && this.operationId > 0) {
+      operation = Object.assign(operation, { id: this.operationId });
+
+      this.editOperation.emit(operation);
     }
   }
 
@@ -147,5 +136,36 @@ export class OperationManagerComponent implements OnInit, OnChanges {
     this.instrumentId = instrumentId;
     this.equipmentId = equipementId;
     this.controlId = controlId;
+  }
+
+  private buildOperationFromForm(): IOperation {
+    const operationGroupId = +this.operationGroupSelect.nativeElement.value;
+    const instrumentId = +this.instrumentSelect.nativeElement.value;
+    const equipmentId = +this.equipmentSelect.nativeElement.value;
+    const controlId = +this.controlSelect.nativeElement.value;
+    let operation: IOperation = null;
+
+    if (operationGroupId && instrumentId
+        && equipmentId && controlId) {
+      const operationGroup = operationGroups.find(x => x.id === operationGroupId);
+      const instrument = instruments.find(x => x.id === instrumentId);
+      const equipment = equipements.find(x => x.id === equipmentId);
+      const control = controls.find(x => x.id === controlId);
+
+      operation = {
+        id: 0,
+        operationGroup: operationGroup,
+        operationGroupId: operationGroupId,
+        instrument: instrument,
+        instrumentId,
+        equipment: equipment,
+        equipmentId: equipmentId,
+        control: control,
+        controlId: controlId,
+        transitions: []
+      };
+    }
+
+    return operation;
   }
 }

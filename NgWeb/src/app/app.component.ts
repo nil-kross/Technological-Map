@@ -57,6 +57,24 @@ export class AppComponent {
     this.operationService.add(currOperation);
   }
 
+  onEditOperation(operation: IOperation) {
+    const oldOperation = this.operationService.operations.find(x => x.id === operation.id);
+    const currOperation = Object.assign(oldOperation, {
+      id: operation.id,
+      operationGroup: operation.operationGroup,
+      operationGroupId: operation.operationGroupId,
+      instrument: operation.instrument,
+      instrumentId: operation.instrumentId,
+      equipment: operation.equipment,
+      equipmentId: operation.equipmentId,
+      control: operation.control,
+      controlId: operation.controlId
+    });
+
+    this.selectedTransitionId = emptyId;
+    this.selectedOperationId = operation.id;
+  }
+
   onAddTransition(transition: ITransition) {
     const currOperation = this.operationService.operations.find(x => x.id === this.selectedOperationId);
     const currTransition = Object.assign(transition, { id: currOperation.transitions.length + 1 });

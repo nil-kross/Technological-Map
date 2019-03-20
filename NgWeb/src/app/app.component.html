@@ -122,6 +122,7 @@
                 *ngIf="selectedOperationId >= 0 && selectedTransitionId < 0"
                 [operationId]="selectedOperationId"
                 (addOperation)="onAddOperation($event)"
+                (editOperation)="onEditOperation($event)"
                 class="col mod-block mod-frame">
               </operation-manager>
             </div>

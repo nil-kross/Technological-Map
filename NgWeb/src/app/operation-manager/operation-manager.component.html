@@ -23,6 +23,13 @@
           value="Добавить"
           (click)="onSaveClick($event)"/>
         <input
+          [disabled]="!(operationId !== 0 && isControlsValid)"
+          [class.mod-button--disabled]="!(operationId !== 0 && isControlsValid)"
+          class="mod-margin mod-button"
+          type="button"
+          value="Изменить"
+          (click)="onEditClick($event)"/>
+        <input
           [disabled]="!(operationId != undefined && operationId > 0) || !isControlsValid"
           [class.mod-button--disabled]="isNewOperation"
           class="mod-margin mod-button"
