@@ -63,6 +63,6 @@ export const operationGroups: IOperationGroup[] = [
   },
   {
       id: 16,
-      name: 'Шлифовальнаяs'
+      name: 'Шлифовальная'
   }
 ];

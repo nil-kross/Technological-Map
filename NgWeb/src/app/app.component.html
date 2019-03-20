@@ -1,79 +1,78 @@
 <div
-  style="
-    width: 297mm;
-    height: 210mm;
-    padding: 2.5mm 5.5mm;
-    border: 1px solid black;
-    background: white;
-  ">
-  <div style="
-    width: 100%;
-    height: 100%;
-    border: 0.75px;
-    background: transparent;
-  ">
-    <ng-container
-      *ngIf="operations.length <= 0">
-      <div
-        class="mod-text">Нет созданных операций</div>
-    </ng-container>
-    <ng-container
-      *ngIf="operations.length > 0">
-      <ng-container *ngFor="let operation of operations; index as i">
-        <div
-          [class.tree-operation--selected]="operation.id === selectedOperationId"
-          class="tree-operation mod-padding-left mod-margin-top">
+  [class.map--expanded]="flyout.isOpened"
+  class="map">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col">
+        <ng-container
+          *ngIf="operations.length <= 0">
           <div
-            [class.mod-frame]="operation.id === selectedOperationId && selectedTransitionId < 0"
-            [class.mod-frame--selected]="operation.id === selectedOperationId && selectedTransitionId < 0"
-            (click)="selectOperation(operation.id)"
-            class="tree-row mod-text mod-padding-left mod-pointer">Операция {{ i + 1 }} - {{ operation.operationGroup.name }}</div>
-          <div  *ngFor="let transition of operation.transitions; index as j"
+            class="mod-text">Нет созданных операций</div>
+        </ng-container>
+        <ng-container
+          *ngIf="operations.length > 0">
+          <ng-container *ngFor="let operation of operations; index as i">
+            <div
+              [class.tree-operation--selected]="operation.id === selectedOperationId"
+              class="tree-operation mod-padding-left mod-margin-top">
+              <div
+                [class.mod-frame]="operation.id === selectedOperationId && selectedTransitionId < 0"
+                [class.mod-frame--selected]="operation.id === selectedOperationId && selectedTransitionId < 0"
+                (click)="selectOperation(operation.id)"
+                class="tree-row mod-text mod-padding-left mod-pointer">Операция {{ i + 1 }} - {{ operation.operationGroup.name }}</div>
+              <div  *ngFor="let transition of operation.transitions; index as j"
+                    class="mod-indent-left">
+                <div  (click)="selectTransition(operation.id, transition.id)"
+                      [class.mod-frame]="selectedOperationId === operation.id && transition.id === selectedTransitionId"
+                      [class.mod-frame--selected]="selectedOperationId === operation.id && transition.id === selectedTransitionId"
+                      class="tree-row mod-pointer">
+                  <span class="mod-text">- </span>
+                  <span class="mod-text mod-capitalize">{{ transition.action.name.toLowerCase() }} </span>
+                  <span class="mod-text">{{ transition.object.fullname.toLowerCase() }} {{ transition.id }} </span>
+                  <span class="mod-text"
+                        *ngIf="transition.measures.length > 0">, выдерживая размеры </span>
+                  <ng-container *ngFor="let measure of transition.measures">
+                    <span class="mod-text">{{ measure.name }}={{ measure.value }} мм</span>
+                  </ng-container>
+                </div>
+              </div>
+              <div
+                (click)="selectOperation(operation.id, true)"
+                class="tree-row mod-indent-left mod-pointer">
+                <span class="mod-text">- </span>
+                <span class="mod-text">{{ operation.instrument.name }}, </span>
+                <span class="mod-text">{{ operation.equipment.name }}, </span>
+                <span class="mod-text">{{ operation.control.name }} </span>
+              </div>
+              <div
                 class="mod-indent-left">
-            <div  (click)="selectTransition(operation.id, transition.id)"
-                  [class.mod-frame]="selectedOperationId === operation.id && transition.id === selectedTransitionId"
-                  [class.mod-frame--selected]="selectedOperationId === operation.id && transition.id === selectedTransitionId"
-                  class="tree-row mod-pointer">
-              <span class="mod-text">- </span>
-              <span class="mod-text mod-capitalize">{{ transition.action.name.toLowerCase() }} </span>
-              <span class="mod-text">{{ transition.object.fullname.toLowerCase() }} {{ transition.id }} </span>
-              <span class="mod-text"
-                    *ngIf="transition.measures.length > 0">, выдерживая размеры </span>
-              <ng-container *ngFor="let measure of transition.measures">
-                <span class="mod-text">{{ measure.name }}={{ measure.value }} мм</span>
-              </ng-container>
+                <input
+                  class="mod-margin mod-button"
+                  type="button"
+                  value="+ Добавить переход"
+                  (click)="selectTransition(operation.id, 0)" />
+              </div>
             </div>
-          </div>
-          <div
-            (click)="selectOperation(operation.id, true)"
-            class="tree-row mod-indent-left mod-pointer">
-            <span class="mod-text">- </span>
-            <span class="mod-text">{{ operation.instrument.name }}, </span>
-            <span class="mod-text">{{ operation.equipment.name }}, </span>
-            <span class="mod-text">{{ operation.control.name }} </span>
-          </div>
-          <div
-            class="mod-indent-left">
-            <input
-              class="mod-margin mod-button"
-              type="button"
-              value="+ Добавить переход"
-              (click)="selectTransition(operation.id, 0)" />
-          </div>
-        </div>
-      </ng-container>
-    </ng-container>
-    <input
-       class="mod-margin mod-button"
-       type="button"
-       value="+ Добавить операцию"
-       (click)="selectOperation(0)" />
-    <input
-      *ngIf="operations.length > 0"
-      class="mod-margin mod-button"
-      type="button"
-      value="x Удалить всё"
-      (click)="clearAll()"/>
+          </ng-container>
+        </ng-container>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <input
+          class="mod-margin mod-button"
+          type="button"
+          value="+ Добавить операцию"
+          (click)="selectOperation(0)" />
+        <input
+          *ngIf="operations.length > 0"
+          class="mod-margin mod-button"
+          type="button"
+          value="x Удалить всё"
+          (click)="clearAll()"/>
+      </div>
+    </div>
+    </div>
   </div>
 </div>
 <app-flyout
