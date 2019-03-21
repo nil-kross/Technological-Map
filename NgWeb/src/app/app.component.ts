@@ -1,3 +1,4 @@
+import { api } from './../shared/Api';
 import { objects } from './../shared/Objects';
 import { ITransition } from './../shared/ITransition';
 import { FlyoutComponent } from './flyout/flyout.component';
@@ -5,6 +6,7 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 import { OperationService } from './operation.service';
 import { IOperation } from '../shared/IOperation';
 import { emptyId } from '../shared/EmptyId';
+import { HttpClient, HttpRequest } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -17,16 +19,17 @@ export class AppComponent {
   selectedOperationId: number;
   selectedTransitionId: number;
   isDragAndDrop = false;
+  pathway: string = null;
 
   get operations() {
     return this.operationService.operations;
   }
 
-  constructor(private operationService: OperationService) { }
+  constructor(private operationService: OperationService,
+              private httpClient: HttpClient) { }
 
   onFileLoaded() {
-    const val = this.loadFileInput.nativeElement.value;
-    console.log(val);
+    this.pathway = this.loadFileInput.nativeElement.value;
   }
 
   selectOperation(operationId: number, isForced: boolean = false) {
@@ -127,15 +130,17 @@ export class AppComponent {
   }
 
   saveToFile() {
-
     const json = JSON.stringify(this.operationService.operations);
-    const obj = JSON.parse(json);
 
-
+    this.httpClient.post(api.saveFile, { content: json }).pipe().subscribe(() => {
+      this.httpClient.get(api.saveFile).pipe().subscribe();
+    });
   }
 
   loadFromFile() {
-
+    this.httpClient.post(api.loadFile, { content: this.pathway }).pipe().subscribe(response => {
+      this.operationService.load(response as any);
+    });
   }
 
   onMouseDown() {

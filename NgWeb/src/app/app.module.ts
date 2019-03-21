@@ -8,6 +8,7 @@ import { MapFrameComponent } from './map/map-frame/map-frame.component';
 import { OperationService } from './operation.service';
 import { OperationManagerComponent } from './operation-manager/operation-manager.component';
 import { TransitionManagerComponent } from './transition-manager/transition-manager.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -19,10 +20,12 @@ import { TransitionManagerComponent } from './transition-manager/transition-mana
     TransitionManagerComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule
   ],
   providers: [
-    OperationService
+    OperationService,
+    HttpClient
   ],
   bootstrap: [AppComponent]
 })
