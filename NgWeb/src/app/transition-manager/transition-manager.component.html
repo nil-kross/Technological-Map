@@ -1,6 +1,13 @@
 <div class="container-fluid">
   <div class="row">
     <input
+      [disabled]="!(transitionId === 0 && isFormValid)"
+      [class.mod-button--disabled]="!(transitionId === 0 && isFormValid)"
+      class="mod-margin mod-button"
+      type="button"
+      value="Добавить"
+      (click)="onAddButtonClick()"/>
+    <input
       [disabled]="!(transitionId !== 0 && isFormValid)"
       [class.mod-button--disabled]="!(transitionId !== 0 && isFormValid)"
       (click)="onEditButtonClick()"
@@ -86,16 +93,6 @@
             value="0"/>
         </div>
       </div>
-    </span>
-    <span
-      class="col-1">
-      <input
-        [disabled]="!(transitionId === 0 && isFormValid)"
-        [class.mod-button--disabled]="!(transitionId === 0 && isFormValid)"
-        class="mod-button"
-        type="button"
-        value="Добавить"
-        (click)="onAddButtonClick()"/>
     </span>
   </div>
 </div>

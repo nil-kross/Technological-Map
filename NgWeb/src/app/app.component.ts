@@ -140,6 +140,7 @@ export class AppComponent {
   loadFromFile() {
     this.httpClient.post(api.loadFile, { content: this.pathway }).pipe().subscribe(response => {
       this.operationService.load(response as any);
+      this.pathway = null;
     });
   }
 
