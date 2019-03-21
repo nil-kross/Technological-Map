@@ -25,12 +25,12 @@
                 [class.mod-frame]="operation.id === selectedOperationId && selectedTransitionId < 0"
                 [class.mod-frame--selected]="operation.id === selectedOperationId && selectedTransitionId < 0"
                 (mousedown)="onOperationMoveStarted(operation.id)"
-                (click)="selectOperation(operation.id)"
+                (click)="onSelectOperation(operation.id)"
                 class="tree-row mod-text mod-padding-left mod-pointer">Операция {{ i + 1 }} - {{ operation.operationGroup.name }}</div>
               <div  *ngFor="let transition of operation.transitions; index as j"
                     class="mod-indent-left">
                 <div  (mousedown)="onTransitionMoveStarted(operation.id, transition.id)"
-                      (click)="selectTransition(operation.id, transition.id)"
+                      (click)="onSelectTransition(operation.id, transition.id)"
                       [class.mod-frame]="selectedOperationId === operation.id && transition.id === selectedTransitionId"
                       [class.mod-frame--selected]="selectedOperationId === operation.id && transition.id === selectedTransitionId"
                       class="tree-row mod-pointer">
@@ -55,7 +55,7 @@
                   class="dragAndDrop-transition"></div> -->
               </div>
               <div
-                (click)="selectOperation(operation.id, true)"
+                (click)="onSelectOperation(operation.id, true)"
                 class="tree-row mod-indent-left mod-pointer">
                 <span class="mod-text">- </span>
                 <span class="mod-text">{{ operation.instrument.name }}, </span>
@@ -68,7 +68,7 @@
                   class="mod-margin mod-button"
                   type="button"
                   value="+ Добавить переход"
-                  (click)="selectTransition(operation.id, 0)" />
+                  (click)="onSelectTransition(operation.id, 0)" />
               </div>
             </div>
             <!-- <div
@@ -85,7 +85,7 @@
           class="mod-margin mod-button"
           type="button"
           value="+ Добавить операцию"
-          (click)="selectOperation(0)" />
+          (click)="onSelectOperation(0)" />
         <input
           *ngIf="operations.length > 0"
           class="mod-margin mod-button"
@@ -106,7 +106,7 @@
           class="mod-margin mod-button"
           type="file"
           value="Загрузить из файла"
-          (change)="onFileLoaded()" />
+          (change)="onLoadFile()" />
         <input
           [disabled]="!pathway"
           [class.mod-button--disabled]="!pathway"

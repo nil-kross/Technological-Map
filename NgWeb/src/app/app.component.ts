@@ -28,11 +28,11 @@ export class AppComponent {
   constructor(private operationService: OperationService,
               private httpClient: HttpClient) { }
 
-  onFileLoaded() {
+  onLoadFile() {
     this.pathway = this.loadFileInput.nativeElement.value;
   }
 
-  selectOperation(operationId: number, isForced: boolean = false) {
+  onSelectOperation(operationId: number, isForced: boolean = false) {
     const isNewValue = isForced || this.selectedTransitionId >= 0 || this.selectedOperationId !== operationId;
 
     this.isDragAndDrop = isNewValue;
@@ -41,24 +41,13 @@ export class AppComponent {
     this.flyout.setState(isNewValue);
   }
 
-  selectTransition(operationId: number, transitionId: number) {
+  onSelectTransition(operationId: number, transitionId: number) {
     const isNewValue = !(operationId === this.selectedOperationId && this.selectedTransitionId === transitionId);
 
     this.isDragAndDrop = isNewValue;
     this.selectedTransitionId = isNewValue ? transitionId : emptyId;
     this.selectedOperationId = isNewValue ? operationId : emptyId;
     this.flyout.setState(isNewValue);
-  }
-
-  deselectAll() {
-    this.selectOperation(emptyId);
-    this.selectTransition(emptyId, emptyId);
-  }
-
-  resetSelection() {
-    this.selectedTransitionId = emptyId;
-    this.selectedOperationId = emptyId;
-    this.flyout.close();
   }
 
   onAddOperation(operation: IOperation) {
@@ -129,21 +118,6 @@ export class AppComponent {
     }
   }
 
-  saveToFile() {
-    const json = JSON.stringify(this.operationService.operations);
-
-    this.httpClient.post(api.saveFile, { content: json }).pipe().subscribe(() => {
-      this.httpClient.get(api.saveFile).pipe().subscribe();
-    });
-  }
-
-  loadFromFile() {
-    this.httpClient.post(api.loadFile, { content: this.pathway }).pipe().subscribe(response => {
-      this.operationService.load(response as any);
-      this.pathway = null;
-    });
-  }
-
   onMouseDown() {
     this.isDragAndDrop = true;
   }
@@ -180,4 +154,29 @@ export class AppComponent {
     // }, 20);
   }
 
+  saveToFile() {
+    const json = JSON.stringify(this.operationService.operations);
+
+    this.httpClient.post(api.saveFile, { content: json }).pipe().subscribe(() => {
+      this.httpClient.get(api.saveFile).pipe().subscribe();
+    });
+  }
+
+  loadFromFile() {
+    this.httpClient.post(api.loadFile, { content: this.pathway }).pipe().subscribe(response => {
+      this.operationService.load(response as any);
+      this.pathway = null;
+    });
+  }
+
+  deselectAll() {
+    this.onSelectOperation(emptyId);
+    this.onSelectTransition(emptyId, emptyId);
+  }
+
+  resetSelection() {
+    this.selectedTransitionId = emptyId;
+    this.selectedOperationId = emptyId;
+    this.flyout.close();
+  }
 }
